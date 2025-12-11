@@ -1,0 +1,98 @@
+/* --------------------
+   CALCULADORA TDEE Y MACROS
+   -------------------- */
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin-top: 30px;
+    background-color: #242424;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.tdee-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.primary-cta {
+    margin-top: 20px;
+    width: 100%; 
+}
+
+.tdee-results {
+    background-color: #333; 
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tdee-results h3 {
+    color: #f0f0f0;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* Selector de Objetivo (los 3 botones) */
+.objetivo-selector {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.obj-btn {
+    flex: 1;
+    background-color: #333;
+    color: #f0f0f0;
+    padding: 10px 5px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9em;
+}
+
+.obj-btn:hover {
+    background-color: #444;
+}
+
+.obj-btn.selected {
+    background-color: #00ff80; 
+    color: #1a1a1a;
+    font-weight: bold;
+    border-color: #00ff80;
+}
+
+/* Contenedor de Desglose de Macronutrientes */
+.macros-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    border-left: 5px solid #00ff80;
+}
+
+.macros-box h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.macros-grid {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+}
+
+.macros-grid strong {
+    color: #ccc;
+}
+
+.small-text {
+    font-size: 0.8em;
+    color: #999;
+}

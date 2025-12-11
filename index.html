@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Fitness | Mide. Entrena. Transfórmate.</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> 
-</head>
+    
+    <link rel="stylesheet" href="styless.css">       
+ </head>
 <body>
 
     <header>
@@ -57,26 +59,117 @@
 
         <section id="tdee-calculator" class="section-content calculator-section">
             <h2 class="section-title">⚖️ Calculadora TDEE Avanzada y Macros</h2>
-            <p class="section-description">Aquí irá el formulario de la calculadora TDEE que está siendo desarrollado en otras ramas.</p>
+            <p class="section-description">Utilizamos la fórmula de Mifflin-St Jeor para la máxima precisión. Introduce tus datos y descubre tu gasto calórico real y el desglose de macronutrientes para tu objetivo.</p>
+            
             <div class="calculator-container">
-                <div id="formulario-tdee" style="padding: 20px; background: #222; border-radius: 8px;">
-                    <p>FORMULARIO TDEE (Contenido en desarrollo)</p>
-                </div>
-                <div id="resultado-tdee" style="padding: 20px; background: #333; border-radius: 8px;">
-                    <p>RESULTADOS (Contenido en desarrollo)</p>
+                <form id="formulario-tdee" class="tdee-form">
+                    
+                    <div class="form-group">
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edad">Edad (años):</label>
+                        <input type="number" id="edad" min="15" max="100" placeholder="Ej: 30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" id="peso" step="0.1" min="30" max="300" placeholder="Ej: 75.5" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="altura">Altura (cm):</label>
+                        <input type="number" id="altura" min="100" max="250" placeholder="Ej: 175" required>
+                    </div>
+                    
+                    <div class="form-group activity-group">
+                        <label for="actividad">Nivel de Actividad:</label>
+                        <select id="actividad" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="sedentario">Sedentario (Poco o ningún ejercicio)</option>
+                            <option value="ligero">Ejercicio ligero (1-3 días/sem)</option>
+                            <option value="moderado">Ejercicio moderado (3-5 días/sem)</option>
+                            <option value="activo">Ejercicio fuerte (6-7 días/sem)</option>
+                            <option value="muy_activo">Atleta / Ejercicio muy fuerte</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="cta-button primary-cta">Calcular TDEE y Objetivos</button>
+                </form>
+
+                <div id="resultado-tdee" class="tdee-results">
+                    <p>Introduce tus datos para que **Smart Fitness** calcule tu gasto energético y te muestre el desglose de macronutrientes para tu objetivo.</p>
                 </div>
             </div>
         </section>
         
         <section id="registro-entrenos" class="section-content tracker-section">
             <h2 class="section-title">📊 Seguimiento de tus Entrenamientos</h2>
-            <p class="section-description">Aquí irá el formulario y la tabla de historial de entrenamientos que está siendo desarrollado en otras ramas.</p>
+            <p class="section-description">Registra tus sesiones de gimnasio para medir tu fuerza y progresión a lo largo del tiempo. ¡El único camino para el progreso es la consistencia!</p>
+            
             <div class="tracker-container">
-                <div style="padding: 20px; background: #222; border-radius: 8px;">
-                    <p>FORMULARIO DE REGISTRO (Contenido en desarrollo)</p>
+                
+                <div class="registro-form-box">
+                    <h3>Nueva Sesión</h3>
+                    <form id="formulario-registro-entreno">
+                        
+                        <div class="form-group">
+                            <label for="fecha-entreno">Fecha:</label>
+                            <input type="date" id="fecha-entreno" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ejercicio">Ejercicio:</label>
+                            <input type="text" id="ejercicio" placeholder="Ej: Sentadilla, Press Banca" list="lista-ejercicios" required>
+                            <datalist id="lista-ejercicios"></datalist>
+                        </div>
+                        
+                        <div class="form-group-inline">
+                            <div class="form-group">
+                                <label for="peso-entreno">Peso (kg):</label>
+                                <input type="number" id="peso-entreno" step="0.5" min="0" value="50" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="series-entreno">Series:</label>
+                                <input type="number" id="series-entreno" min="1" value="3" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="repeticiones-entreno">Reps:</label>
+                                <input type="number" id="repeticiones-entreno" min="1" value="10" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="cta-button primary-cta">Guardar Sesión</button>
+                    </form>
                 </div>
-                <div style="padding: 20px; background: #333; border-radius: 8px;">
-                    <p>HISTORIAL (Contenido en desarrollo)</p>
+                
+                <div class="historial-box">
+                    <h3>Mi Historial de Carga</h3>
+                    
+                    <div id="historial-resumen" class="historial-resumen">
+                        <p>Total de Entrenos Guardados: <span id="total-entrenos" class="accent-text">0</span></p>
+                    </div>
+
+                    <table id="historial-tabla">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Ejercicio</th>
+                                <th>Peso (kg)</th>
+                                <th>Series</th>
+                                <th>Reps</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historial-cuerpo">
+                            <tr><td colspan="5" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -131,6 +224,7 @@
         <p>Smart Fitness &copy; 2025 | Política de Privacidad | <span class="accent-text">Hecho con Datos.</span></p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="calculadora.js"></script>
+    <script src="registro.js"></script> 
 </body>
 </html>
