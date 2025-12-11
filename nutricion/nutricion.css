@@ -1,0 +1,48 @@
+/* ==========================================================
+   nutricion.css: ESTILOS ESPECÍFICOS DE NUTRICIÓN
+   ========================================================== */
+
+.nutrition-grid {
+    display: grid;
+    /* 4 columnas fluidas, se adaptan bien a 2 o 3 si la pantalla es pequeña */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.nutrition-card {
+    background-color: #242424; 
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nutrition-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff80; /* Resalta al pasar el ratón */
+    box-shadow: 0 5px 15px rgba(0, 255, 128, 0.1);
+}
+
+.nutrition-card h3 {
+    color: #f0f0f0;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.nutrition-card p {
+    color: #ccc;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Para que el texto empuje el enlace hacia abajo */
+}
+
+.nutrition-card .card-link {
+    /* El estilo base del card-link ya está en styles.css, aquí solo ajustamos */
+    color: #00ff80; 
+    font-size: 0.9em;
+    text-align: right;
+    margin-top: auto; /* Asegura que el link esté siempre al fondo */
+}
