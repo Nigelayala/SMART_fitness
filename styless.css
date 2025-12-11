@@ -1,0 +1,299 @@
+/* --------------------
+   1. RESET BÁSICO Y FUENTES
+   -------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Aplicación de la fuente para todo el cuerpo */
+    font-family: 'Montserrat', Arial, sans-serif; 
+    background-color: #1a1a1a; /* Fondo muy oscuro */
+    color: #f0f0f0; /* Color de texto claro */
+    line-height: 1.6;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
+}
+
+h1, h2, h3 {
+    color: #f0f0f0;
+    font-weight: 900; /* Extra bold */
+}
+
+.accent-text {
+    color: #00ff80; /* Nuestro color de acento: Verde Neón */
+}
+
+/* --------------------
+   2. ENCABEZADO Y NAVEGACIÓN
+   -------------------- */
+header {
+    background-color: #0d0d0d; /* Un negro aún más oscuro para la cabecera */
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00ff80; /* Línea de acento 'Smart' */
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #00ff80; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #f0f0f0;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00ff80; /* Cambio al color de acento al pasar el ratón */
+}
+
+/* --------------------
+   3. SECCIÓN HERO (IMAGEN DE FONDO)
+   -------------------- */
+.hero {
+    /* Fondo con degradado oscuro sobre la imagen (asume que la imagen está en ./images/hero-bg.jpg) */
+    background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)), 
+                url('./images/hero-bg.jpg') no-repeat center center/cover; 
+    
+    height: 70vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 5%;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 10;
+}
+
+.hero h1 {
+    font-size: 4.5em; 
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: #ccc;
+    margin-bottom: 40px;
+}
+
+/* Botón de Llamada a la Acción (CTA) */
+.cta-button {
+    display: inline-block;
+    background-color: #00ff80;
+    color: #1a1a1a; 
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #33ff99; 
+}
+
+/* --------------------
+   4. SECCIONES GENERALES Y TÍTULOS
+   -------------------- */
+.section-content {
+    /* Ajustamos el padding para dar un respiro a las secciones */
+    padding: 60px 5%; 
+    margin: 0 auto;
+    max-width: 1200px; /* Limitamos el ancho */
+}
+
+.section-title {
+    font-size: 2.5em; 
+    margin-bottom: 10px;
+    border-left: 4px solid #00ff80; 
+    padding-left: 15px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    color: #bbb;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: 15px;
+}
+
+/* --------------------
+   5. SECCIÓN DE HERRAMIENTAS (TARJETAS)
+   -------------------- */
+.tools-section {
+    text-align: center;
+}
+
+.tool-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #242424; 
+    padding: 30px;
+    border-radius: 10px;
+    flex: 1; 
+    text-align: left;
+    border-top: 3px solid transparent; 
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-top-color: #00ff80; 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 255, 128, 0.1); 
+}
+
+.card h3 {
+    color: #00ff80;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.card-link {
+    display: block;
+    margin-top: 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-link.disabled {
+    color: #777;
+    pointer-events: none; 
+}
+
+/* --------------------
+   6. SECCIÓN DE CALCULADORA Y REGISTRO (Estilos de marcador de posición)
+   -------------------- */
+.calculator-container, .tracker-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin-top: 30px;
+    padding: 30px 0;
+}
+
+/* --------------------
+   7. SECCIÓN ENTRENAMIENTO
+   -------------------- */
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.training-plan {
+    background-color: #242424; 
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+    border: 1px solid #333;
+    transition: background-color 0.3s;
+}
+
+.training-plan:hover {
+    background-color: #333;
+}
+
+.training-plan h3 {
+    font-size: 1.4em;
+    color: #00ff80;
+    margin-bottom: 10px;
+}
+
+.plan-tag {
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 5px 10px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.tag-heavy {
+    background-color: rgba(255, 0, 0, 0.2); 
+    color: #ff3333;
+}
+.tag-cardio {
+    background-color: rgba(0, 128, 255, 0.2);
+    color: #66b3ff;
+}
+.tag-time {
+    background-color: rgba(0, 255, 128, 0.2); 
+    color: #00ff80;
+}
+
+.view-all-link {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.nutrition-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nutrition-list li {
+    background-color: #242424;
+    padding: 15px;
+    border-left: 4px solid #00ff80;
+    border-radius: 4px;
+}
+
+/* --------------------
+   8. CTA FINAL Y FOOTER
+   -------------------- */
+.cta-final {
+    text-align: center;
+    padding: 60px 5%;
+    background-color: #0d0d0d;
+    border-radius: 10px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.secondary-cta {
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+}
+
+.secondary-cta:hover {
+    background-color: #fff;
+}
+
+footer {
+    background-color: #0d0d0d;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 40px;
+}
