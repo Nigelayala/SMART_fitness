@@ -45,14 +45,13 @@ header {
     color: #f0f0f0; /* Color primario del logo */
 }
 .logo .accent-text {
-    /* Asegura que 'FITNESS' use el color neón */
     color: #00ff80;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 25px; /* Usar gap en lugar de margin-left en <li> */
+    gap: 25px;
 }
 
 nav ul li a {
@@ -60,12 +59,12 @@ nav ul li a {
     color: #f0f0f0;
     font-weight: 500;
     transition: color 0.3s;
-    padding: 5px 0; /* Añadir padding para el hover */
+    padding: 5px 0;
 }
 
 nav ul li a:hover {
     color: #00ff80; 
-    border-bottom: 2px solid #00ff80; /* Línea de acento al hacer hover */
+    border-bottom: 2px solid #00ff80;
 }
 
 /* --------------------
@@ -120,7 +119,7 @@ nav ul li a:hover {
     transform: translateY(-2px);
 }
 
-/* Estilo para el botón de motivación (secundario, si es diferente) */
+/* Estilo para el botón de motivación */
 .secondary-cta {
     background-color: #ff5733; /* Naranja/Rojo de motivación */
     color: #f0f0f0;
@@ -181,47 +180,56 @@ nav ul li a:hover {
     justify-content: space-around;
     gap: 20px;
     margin-top: 30px;
-    text-align: left; /* Restablecer alineación dentro de la tarjeta */
+    text-align: left;
 }
 
-/* Modificación en el selector .card */
-.card {
-/* Modificación en el selector .card */
-.card {
-    background-color: ;#242424; /* <-- ERROR: Tienes un punto y coma extra aquí ; */
-    padding: 45px 30px; 
-    border-radius: 10px;
-    flex: 1; 
-    text-align: left;
-    border-top: 3px solid transparent; 
-    transition: all 0.3s ease;
+/* Estilo Base para TODAS las tarjetas (Herramientas y Nutrición) */
+.card, .nutrition-card {
+    background-color: #242424;
+    padding: 45px 30px; /* Aumentado para más tamaño */
+    border-radius: 10px;
+    flex: 1; 
+    text-align: left;
+    border-top: 3px solid transparent; 
+    transition: all 0.3s ease;
+    
+    /* Propiedades para el layout de Nutrición */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.card:hover {
-    border-top-color: #00ff80; 
+.card:hover, .nutrition-card:hover {
+    border-top-color: #00ff80; /* Usamos el color principal neón */
     transform: translateY(-5px); 
     box-shadow: 0 10px 20px rgba(0, 255, 128, 0.1); 
 }
 
-/* Modificación en el selector .card h3 */
-.card h3 {
-    color: #00ff80;
-    margin-bottom: 15px; /* Aumentar espacio debajo del título */
-    font-size: 1.7em; /* Aumentar el tamaño de la fuente (antes 1.5em) */
+.card h3, .nutrition-card h3 {
+    color: #00ff80; /* Título en neón */
+    margin-bottom: 15px;
+    font-size: 1.7em; /* Aumentado */
 }
 
-/* Añade o ajusta el selector p dentro de la tarjeta */
-.card p {
-    font-size: 1.05em; /* Ligeramente más grande */
-    margin-bottom: 20px; /* Más espacio entre el texto y el enlace/flecha */
+.card p, .nutrition-card p {
+    font-size: 1.05em;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Permite que el párrafo empuje el enlace hacia abajo */
+    color: #ccc;
 }
 
-.card-link {
+.card-link, .nutrition-card .card-link {
     display: block;
     margin-top: 15px;
-    color: #fff;
+    color: #f0f0f0; /* Color claro para el enlace */
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s;
+}
+
+.card-link:hover, .nutrition-card .card-link:hover {
+    color: #00ff80; /* Neón al pasar el ratón */
+    text-decoration: underline;
 }
 
 .card-link.disabled {
@@ -233,6 +241,15 @@ nav ul li a:hover {
 /* --------------------
    SECCIÓN ENTRENAMIENTO Y NUTRICIÓN
    -------------------- */
+
+/* Estilo para la cuadrícula de nutrición si está separada */
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
 .training-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -285,20 +302,6 @@ nav ul li a:hover {
     margin-top: 30px;
 }
 
-.nutrition-list {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.nutrition-list li {
-    background-color: #242424;
-    padding: 15px;
-    border-left: 4px solid #00ff80;
-    border-radius: 4px;
-}
 
 /* --------------------
    CTA FINAL Y FOOTER
@@ -313,7 +316,6 @@ nav ul li a:hover {
 }
 
 .cta-final .secondary-cta {
-    /* Estilo del botón CTA final, si es necesario sobrescribir */
     background-color: #00ff80;
     color: #1a1a1a;
 }

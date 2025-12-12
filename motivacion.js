@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 2. Crear el objeto de audio (Asegúrate que el archivo 'yeah_buddy.mp3' exista en la raíz)
     // NOTA: Si necesitas reproducir dos sonidos (Lightweight y Yeah Buddy), puedes definir ambos aquí:
-    const audioYeahBuddy = new Audio('yeah_buddy.mp3'); 
+    const audioYeahBuddy = new Audio('yeahbuddy.mp3'); 
     // const audioLightweight = new Audio('lightweight.mp3'); // Opcional, si tienes otro archivo
 
     if (btnSound) {
