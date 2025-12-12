@@ -34,21 +34,25 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #00ff80; 
+    position: sticky; /* Fija el header arriba */
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 1.8em;
-    font-weight: bold;
-    color: #00ff80; 
+    font-weight: 900;
+    color: #f0f0f0; /* Color primario del logo */
+}
+.logo .accent-text {
+    /* Asegura que 'FITNESS' use el color neón */
+    color: #00ff80;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-}
-
-nav ul li {
-    margin-left: 25px;
+    gap: 25px; /* Usar gap en lugar de margin-left en <li> */
 }
 
 nav ul li a {
@@ -56,10 +60,12 @@ nav ul li a {
     color: #f0f0f0;
     font-weight: 500;
     transition: color 0.3s;
+    padding: 5px 0; /* Añadir padding para el hover */
 }
 
 nav ul li a:hover {
     color: #00ff80; 
+    border-bottom: 2px solid #00ff80; /* Línea de acento al hacer hover */
 }
 
 /* --------------------
@@ -67,7 +73,7 @@ nav ul li a:hover {
    -------------------- */
 .hero {
     background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)), 
-                url('./images/hero-bg.jpg') no-repeat center center/cover; 
+                 url('./images/hero-bg.jpg') no-repeat center center/cover; 
     
     height: 70vh; 
     display: flex;
@@ -104,12 +110,24 @@ nav ul li a:hover {
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
     border: none;
+    cursor: pointer;
 }
 
 .cta-button:hover {
     background-color: #33ff99; 
+    transform: translateY(-2px);
+}
+
+/* Estilo para el botón de motivación (secundario, si es diferente) */
+.secondary-cta {
+    background-color: #ff5733; /* Naranja/Rojo de motivación */
+    color: #f0f0f0;
+}
+
+.secondary-cta:hover {
+    background-color: #ff8566;
 }
 
 .form-group input, .form-group select {
@@ -163,16 +181,20 @@ nav ul li a:hover {
     justify-content: space-around;
     gap: 20px;
     margin-top: 30px;
+    text-align: left; /* Restablecer alineación dentro de la tarjeta */
 }
 
+/* Modificación en el selector .card */
 .card {
-    background-color: #242424; 
-    padding: 30px;
-    border-radius: 10px;
-    flex: 1; 
-    text-align: left;
-    border-top: 3px solid transparent; 
-    transition: all 0.3s ease;
+/* Modificación en el selector .card */
+.card {
+    background-color: ;#242424; /* <-- ERROR: Tienes un punto y coma extra aquí ; */
+    padding: 45px 30px; 
+    border-radius: 10px;
+    flex: 1; 
+    text-align: left;
+    border-top: 3px solid transparent; 
+    transition: all 0.3s ease;
 }
 
 .card:hover {
@@ -181,10 +203,17 @@ nav ul li a:hover {
     box-shadow: 0 10px 20px rgba(0, 255, 128, 0.1); 
 }
 
+/* Modificación en el selector .card h3 */
 .card h3 {
-    color: #00ff80;
-    margin-bottom: 10px;
-    font-size: 1.5em;
+    color: #00ff80;
+    margin-bottom: 15px; /* Aumentar espacio debajo del título */
+    font-size: 1.7em; /* Aumentar el tamaño de la fuente (antes 1.5em) */
+}
+
+/* Añade o ajusta el selector p dentro de la tarjeta */
+.card p {
+    font-size: 1.05em; /* Ligeramente más grande */
+    margin-bottom: 20px; /* Más espacio entre el texto y el enlace/flecha */
 }
 
 .card-link {
@@ -283,13 +312,14 @@ nav ul li a:hover {
     max-width: 1200px;
 }
 
-.secondary-cta {
-    background-color: #f0f0f0;
+.cta-final .secondary-cta {
+    /* Estilo del botón CTA final, si es necesario sobrescribir */
+    background-color: #00ff80;
     color: #1a1a1a;
 }
 
-.secondary-cta:hover {
-    background-color: #fff;
+.cta-final .secondary-cta:hover {
+    background-color: #33ff99;
 }
 
 footer {
