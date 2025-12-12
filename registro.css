@@ -10,6 +10,56 @@
     max-width: 1200px; 
 }
 
+/* ==========================================================
+   AGREGADO: ESTILOS DE NAVEGACIÓN (HEADER Y NAV)
+   ========================================================== */
+.accent-text {
+    color: #00ff80; /* Color neón, usado en el logo */
+}
+
+header {
+    background-color: #0d0d0d; /* Negro muy oscuro para la cabecera */
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between; /* Alinea el logo a la izquierda y el nav a la derecha */
+    align-items: center;
+    border-bottom: 2px solid #00ff80; /* Línea de acento neón */
+    position: sticky; /* Hace que el header se quede arriba al hacer scroll */
+    top: 0;
+    z-index: 100; /* Asegura que esté por encima de todo el contenido */
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: #f0f0f0; 
+}
+
+/* --------------------
+   ESTILOS DEL MENÚ DE NAVEGACIÓN
+   -------------------- */
+nav ul {
+    list-style: none;
+    display: flex; /* Coloca los elementos de la lista en una fila */
+    gap: 25px; /* Espacio entre los ítems del menú */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #f0f0f0; /* Texto blanco/claro por defecto */
+    font-weight: 500;
+    font-size: 1em;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding: 5px 0;
+}
+
+nav ul li a:hover {
+    color: #00ff80; /* Color neón al pasar el ratón */
+    /* Opcional: una línea de acento sutil debajo del enlace */
+    border-bottom: 2px solid #00ff80;
+}
 
 .tracker-container {
     display: grid;
@@ -90,4 +140,65 @@
 .registro-form-box .primary-cta {
     margin-top: 20px;
     width: 100%;
+}
+/* ... (Todo tu código de registro.css anterior) ... */
+
+/* Estilos para el formulario dinámico de series */
+
+.series-header {
+    margin-bottom: 5px;
+    padding-right: 50px; /* Para alinear el contenido de Peso/Reps */
+    font-size: 0.9em;
+    color: #00ff80;
+}
+
+.serie-row {
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.serie-row input {
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 8px;
+    text-align: center;
+}
+
+.delete-serie-btn {
+    background: none;
+    border: none;
+    color: #ff5555;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+.delete-serie-btn:hover {
+    color: #ff0000;
+}
+
+/* Estilos para el botón de eliminar en el historial */
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 0;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+    color: #ff3333; /* Color rojo al pasar el ratón */
+}
+
+/* Asegura que la columna de acción sea visible */
+#historial-tabla th:last-child, 
+#historial-tabla td:last-child {
+    text-align: center;
+    width: 60px; /* Ancho fijo para el botón */
 }

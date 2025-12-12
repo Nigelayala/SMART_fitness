@@ -1,143 +1,236 @@
 // ==========================================================
-// registro.js: Lógica de Registro de Entrenamientos y LocalStorage
-// (Cubre 10% Funcionalidad y 5% Base de Datos/Datos)
+// registro.js: Lógica de Registro Dinámico de Series
 // ==========================================================
 
-// Lista estática inicial de ejercicios comunes
+// Lista estática inicial de ejercicios comunes (Igual que antes)
 const EJERCICIOS_BASE = [
-    { id: 'pb', nombre: 'Press Banca', grupo: 'Pecho' },
-    { id: 's', nombre: 'Sentadilla', grupo: 'Pierna' },
-    { id: 'pm', nombre: 'Peso Muerto', grupo: 'Espalda' }
+    { id: 'pb', nombre: 'Press Banca', grupo: 'Pecho' },
+    { id: 's', nombre: 'Sentadilla', grupo: 'Pierna' },
+    { id: 'pm', nombre: 'Peso Muerto', grupo: 'Espalda' }
 ];
 
-// Obtiene la lista completa de ejercicios (base + personalizados del usuario).
+// --- FUNCIONES DE UTILIDAD (No modificadas) ---
+
 function obtenerTodosLosEjercicios() {
-    const ejerciciosGuardados = JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
-    return [...EJERCICIOS_BASE, ...ejerciciosGuardados];
+    const ejerciciosGuardados = JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
+    return [...EJERCICIOS_BASE, ...ejerciciosGuardados];
 }
 
-// Obtiene ejercicios guardados por el usuario
 function obtenerEjerciciosPersonalizados() {
-    return JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
+    return JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
 }
 
-// Guarda un nuevo ejercicio si no existe (para el datalist)
 function guardarNuevoEjercicio(nombreEjercicio) {
-    const nombreNormalizado = nombreEjercicio.trim();
-    const todosLosEjercicios = obtenerTodosLosEjercicios();
+    // Lógica para guardar nuevos ejercicios en el datalist (sin cambios)
+    const nombreNormalizado = nombreEjercicio.trim();
+    const todosLosEjercicios = obtenerTodosLosEjercicios();
 
-    const yaExiste = todosLosEjercicios.some(ej => ej.nombre.toLowerCase() === nombreNormalizado.toLowerCase());
+    const yaExiste = todosLosEjercicios.some(ej => ej.nombre.toLowerCase() === nombreNormalizado.toLowerCase());
 
-    if (!yaExiste) {
-        let ejerciciosPersonalizados = obtenerEjerciciosPersonalizados();
-        const nuevoEjercicio = {
-            id: 'user-' + Date.now(),
-            nombre: nombreNormalizado,
-            grupo: 'Personalizado'
-        };
-        ejerciciosPersonalizados.push(nuevoEjercicio);
-        localStorage.setItem('ejerciciosPersonalizados', JSON.stringify(ejerciciosPersonalizados));
-        inicializarDatalistEjercicios(); 
-    }
+    if (!yaExiste) {
+        let ejerciciosPersonalizados = obtenerEjerciciosPersonalizados();
+        const nuevoEjercicio = {
+            id: 'user-' + Date.now(),
+            nombre: nombreNormalizado,
+            grupo: 'Personalizado'
+        };
+        ejerciciosPersonalizados.push(nuevoEjercicio);
+        localStorage.setItem('ejerciciosPersonalizados', JSON.stringify(ejerciciosPersonalizados));
+        inicializarDatalistEjercicios(); 
+    }
 }
 
-// Función que llena el datalist del formulario de registro con ejercicios disponibles
 function inicializarDatalistEjercicios() {
-    const datalist = document.getElementById('lista-ejercicios');
-    if (!datalist) return;
-    
-    const ejercicios = obtenerTodosLosEjercicios();
-    datalist.innerHTML = '';
-    
-    ejercicios.forEach(ej => {
-        const option = document.createElement('option');
-        option.value = ej.nombre;
-        datalist.appendChild(option);
-    });
+    const datalist = document.getElementById('lista-ejercicios');
+    if (!datalist) return;
+    
+    const ejercicios = obtenerTodosLosEjercicios();
+    datalist.innerHTML = '';
+    
+    ejercicios.forEach(ej => {
+        const option = document.createElement('option');
+        option.value = ej.nombre;
+        datalist.appendChild(option);
+    });
 }
 
-// Obtiene el historial de entrenamientos del Local Storage
 function obtenerHistorial() {
-    return JSON.parse(localStorage.getItem('historialEntrenos')) || [];
+    return JSON.parse(localStorage.getItem('historialEntrenos')) || [];
 }
 
-// Guarda un nuevo registro en el Local Storage
-function guardarRegistro(registro) {
-    const historial = obtenerHistorial();
-    historial.push(registro);
-    localStorage.setItem('historialEntrenos', JSON.stringify(historial));
-    
-    mostrarHistorial(); 
+// Guarda un NUEVO EJERCICIO COMPLETO (con sus series) en Local Storage
+function guardarEjercicioCompleto(ejercicioRegistro) {
+    const historial = obtenerHistorial();
+    historial.push(ejercicioRegistro);
+    localStorage.setItem('historialEntrenos', JSON.stringify(historial));
+    
+    mostrarHistorial(); 
 }
 
-// Función principal para mostrar los registros en la tabla
-function mostrarHistorial() {
-    const tbody = document.getElementById('historial-cuerpo');
-    const totalEntrenosSpan = document.getElementById('total-entrenos');
-    const historial = obtenerHistorial();
-    
-    if (!tbody || !totalEntrenosSpan) return;
+// --- FUNCIONES DE INTERFAZ DINÁMICA ---
 
-    tbody.innerHTML = ''; 
-    totalEntrenosSpan.textContent = historial.length;
+// Genera el HTML para una nueva fila de serie
+function createSerieRow() {
+    return `
+        <div class="form-group-inline serie-row">
+            <div class="form-group">
+                <input type="number" class="serie-peso" step="0.5" min="0" placeholder="Peso" value="">
+            </div>
+            <div class="form-group">
+                <input type="number" class="serie-reps" min="1" placeholder="Reps" value="">
+            </div>
+            <div class="form-group" style="flex: 0 0 50px; text-align: right;">
+                <button type="button" class="delete-serie-btn" onclick="this.closest('.serie-row').remove()">X</button>
+            </div>
+        </div>
+    `;
+}
 
-    if (historial.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>';
+// Añade una fila de serie al contenedor
+function addSerieToForm() {
+    const list = document.getElementById('series-list');
+    list.insertAdjacentHTML('beforeend', createSerieRow());
+}
+
+// --- FUNCIÓN DE ELIMINACIÓN DE REGISTRO COMPLETO ---
+
+window.eliminarRegistro = function(timestamp) {
+    if (!confirm("¿Estás seguro de que quieres eliminar este ejercicio completo con todas sus series?")) {
         return;
     }
 
-    // El más reciente se muestra arriba
-    historial.slice().reverse().forEach(registro => {
-        const row = tbody.insertRow();
-        
-        row.insertCell().textContent = registro.fecha;
-        row.insertCell().textContent = registro.ejercicio;
-        row.insertCell().textContent = registro.peso;
-        row.insertCell().textContent = registro.series;
-        row.insertCell().textContent = registro.repeticiones;
-    });
+    let historial = obtenerHistorial();
+    const nuevoHistorial = historial.filter(registro => registro.timestamp !== timestamp);
+    
+    localStorage.setItem('historialEntrenos', JSON.stringify(nuevoHistorial));
+    mostrarHistorial();
 }
 
 
-// Maneja el envío del Formulario de Registro de Entrenamientos.
-function manejarRegistroEntreno(event) {
+// --- LÓGICA DE GUARDADO FINAL ---
+
+// Maneja el guardado del Ejercicio COMPLETO con todas sus series
+function manejarGuardadoEjercicio(event) {
     event.preventDefault();
     
-    const form = event.target;
-    
-    const registro = {
-        fecha: form['fecha-entreno'].value,
-        ejercicio: form.ejercicio.value.trim(),
-        peso: parseFloat(form['peso-entreno'].value),
-        series: parseInt(form['series-entreno'].value),
-        repeticiones: parseInt(form['repeticiones-entreno'].value),
+    const fecha = document.getElementById('fecha-entreno').value;
+    const ejercicioNombre = document.getElementById('ejercicio').value.trim();
+    const seriesElements = document.querySelectorAll('#series-list .serie-row');
+
+    if (!fecha || !ejercicioNombre) {
+        alert("Por favor, introduce la Fecha y el Ejercicio.");
+        return;
+    }
+    if (seriesElements.length === 0) {
+        alert("Debes añadir al menos una serie.");
+        return;
+    }
+
+    const seriesData = [];
+    let isValid = true;
+
+    seriesElements.forEach((row, index) => {
+        const pesoInput = row.querySelector('.serie-peso');
+        const repsInput = row.querySelector('.serie-reps');
+        
+        const peso = parseFloat(pesoInput.value);
+        const reps = parseInt(repsInput.value);
+
+        if (isNaN(peso) || isNaN(reps) || peso < 0 || reps < 1) {
+            isValid = false;
+            // Opcional: Resaltar la fila con error
+            row.style.border = '1px solid red'; 
+        }
+
+        seriesData.push({
+            peso: peso,
+            reps: reps,
+            numeroSerie: index + 1
+        });
+    });
+
+    if (!isValid) {
+        alert("Por favor, revisa que todas las series tengan valores numéricos válidos (Peso >= 0, Reps >= 1).");
+        return;
+    }
+
+    const registroEjercicio = {
+        fecha: fecha,
+        ejercicio: ejercicioNombre,
+        series: seriesData, // Un array de objetos {peso, reps, numeroSerie}
+        totalSeries: seriesData.length,
         timestamp: Date.now()
     };
     
-    if (!registro.fecha || !registro.ejercicio || isNaN(registro.peso)) {
-        alert("Por favor, rellena todos los campos.");
-        return;
-    }
-    
-    guardarRegistro(registro);
-    guardarNuevoEjercicio(registro.ejercicio);
+    guardarEjercicioCompleto(registroEjercicio);
+    guardarNuevoEjercicio(ejercicioNombre);
 
-    form.reset();
-    alert(`¡Sesión de ${registro.ejercicio} con ${registro.peso}kg guardada con éxito!`);
+    document.getElementById('formulario-registro-dinamico').reset();
+    document.getElementById('series-list').innerHTML = ''; // Limpiar series
+
+    alert(`¡Ejercicio de ${ejercicioNombre} con ${seriesData.length} series guardado con éxito!`);
 }
 
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-    const formRegistro = document.getElementById('formulario-registro-entreno');
-    if (formRegistro) {
-        formRegistro.addEventListener('submit', manejarRegistroEntreno);
-    }
+// --- FUNCIÓN PRINCIPAL DE RENDERIZADO DE TABLA ---
 
-    if (document.getElementById('lista-ejercicios')) {
-        inicializarDatalistEjercicios();
+function mostrarHistorial() {
+    const tbody = document.getElementById('historial-cuerpo');
+    const totalEntrenosSpan = document.getElementById('total-entrenos');
+    const historial = obtenerHistorial();
+    
+    if (!tbody || !totalEntrenosSpan) return;
+
+    tbody.innerHTML = ''; 
+    totalEntrenosSpan.textContent = historial.length;
+
+    if (historial.length === 0) {
+        // Colspan ahora es 4
+        tbody.innerHTML = '<tr><td colspan="4" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>';
+        return;
+    }
+
+    // El más reciente se muestra arriba
+    historial.slice().reverse().forEach(registro => {
+        const row = tbody.insertRow();
+        
+        // Columna de Series: Muestra el resumen (Ej: 3x10@80kg)
+        const resumenSeries = registro.series
+            .map(s => `${s.peso}kg x ${s.reps}`)
+            .join(' / ');
+        
+        row.insertCell().textContent = registro.fecha;
+        row.insertCell().textContent = registro.ejercicio;
+        row.insertCell().textContent = resumenSeries;
+        
+        // Columna de Acción (Eliminar)
+        const deleteCell = row.insertCell();
+        deleteCell.innerHTML = `<button class="delete-btn" onclick="eliminarRegistro(${registro.timestamp})">🗑️</button>`;
+    });
+}
+
+
+// --- INICIALIZACIÓN ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Enlace del botón de añadir serie
+    const btnAddSerie = document.getElementById('btn-add-serie');
+    if (btnAddSerie) {
+        btnAddSerie.addEventListener('click', addSerieToForm);
+        // Opcional: Añadir la primera serie por defecto al cargar
+        addSerieToForm(); 
     }
-    if (document.getElementById('historial-tabla')) {
-        mostrarHistorial();
+    
+    // 2. Enlace del formulario (Usamos el botón de submit para el guardado final)
+    const formRegistro = document.getElementById('formulario-registro-dinamico');
+    if (formRegistro) {
+        formRegistro.addEventListener('submit', manejarGuardadoEjercicio);
     }
+    
+    // 3. Inicializar datalist y tabla
+    if (document.getElementById('lista-ejercicios')) {
+        inicializarDatalistEjercicios();
+    }
+    if (document.getElementById('historial-tabla')) {
+        mostrarHistorial();
+    }
 });

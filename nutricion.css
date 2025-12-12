@@ -1,79 +1,174 @@
 /* ==========================================================
-   nutricion.css: ESTILOS ESPECÍFICOS DE LA SECCIÓN DE NUTRICIÓN
+   AGREGADO: ESTILOS DE NAVEGACIÓN (HEADER Y NAV)
+   ========================================================== */
+.accent-text {
+    color: #00ff80; /* Color neón, usado en el logo */
+}
+
+header {
+    background-color: #0d0d0d; /* Negro muy oscuro para la cabecera */
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between; /* Alinea el logo a la izquierda y el nav a la derecha */
+    align-items: center;
+    border-bottom: 2px solid #00ff80; /* Línea de acento neón */
+    position: sticky; /* Hace que el header se quede arriba al hacer scroll */
+    top: 0;
+    z-index: 100; /* Asegura que esté por encima de todo el contenido */
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: #f0f0f0; 
+}
+
+/* --------------------
+   ESTILOS DEL MENÚ DE NAVEGACIÓN
+   -------------------- */
+nav ul {
+    list-style: none;
+    display: flex; /* <-- ESTO ARREGLA EL PROBLEMA: Hace que los elementos sean horizontales */
+    gap: 25px; /* Espacio entre los ítems del menú */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #f0f0f0; /* Texto blanco/claro por defecto */
+    font-weight: 500;
+    font-size: 1em;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding: 5px 0;
+}
+
+nav ul li a:hover {
+    color: #00ff80; /* Color neón al pasar el ratón */
+    border-bottom: 2px solid #00ff80;
+}
+
+
+/* ==========================================================
+   nutricion.css: ESTILOS PARA EL ARTÍCULO DE SUPLEMENTACIÓN
    ========================================================== */
 
 /* --------------------
-   ESTILOS GENERALES DE LA SECCIÓN
+   1. ESTILOS BASE Y CUERPO (Body y Contenedor Principal)
    -------------------- */
-
-.nutrition-section {
-    background-color: #1a1a1a; /* Fondo oscuro para la sección */
-    padding: 60px 20px;
-}
-
-/* --------------------
-   CUADRÍCULA DE TARJETAS
-   -------------------- */
-
-.nutrition-grid {
-    display: grid;
-    /* Crea 4 columnas iguales en pantallas grandes, pero se adapta a 1 o 2 en móviles */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
-}
-
-/* --------------------
-   ESTILOS DE LAS TARJETAS INDIVIDUALES
-   -------------------- */
-
-.nutrition-card {
-    background-color: #242424; /* Fondo oscuro de la tarjeta */
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    
-    /* Configuración para que el enlace quede siempre abajo */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.nutrition-card:hover {
-    transform: translateY(-5px); /* Pequeño efecto de elevación */
-    border-color: #00ff80;      /* Borde de color neón al pasar el ratón */
-    box-shadow: 0 5px 15px rgba(0, 255, 128, 0.15); /* Sombra suave de neón */
-}
-
-.nutrition-card h3 {
+body {
+    background-color: #1a1a1a; /* Fondo principal muy oscuro */
     color: #f0f0f0;
-    font-size: 1.4em;
+    font-family: 'Montserrat', Arial, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+}
+
+main {
+    padding-top: 50px; /* Espacio debajo del header */
+    padding-bottom: 80px;
+}
+
+/* El Contenedor del Artículo (Ligeramente más claro para destacar) */
+.article-section {
+    background-color: #202020; /* Tonalidad de gris oscuro un poco más clara */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 5%; 
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.article-intro {
+    font-size: 1.1em;
+    color: #bbb;
+    margin-bottom: 40px;
+    border-left: 3px solid #00ff80;
+    padding-left: 15px;
+}
+
+/* --------------------
+   2. TIPOGRAFÍA Y ENCABEZADOS
+   -------------------- */
+.article-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* Extra bold para el título principal */
+    font-size: 3em;
+    color: #00ff80; /* Color neón */
     margin-bottom: 10px;
 }
 
-.nutrition-card p {
-    color: #ccc;
+.sub-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+    color: #f0f0f0;
+    margin-top: 30px;
     margin-bottom: 15px;
-    flex-grow: 1; /* Permite que el párrafo ocupe el espacio restante */
+    border-bottom: 1px solid #333; /* Separador sutil */
+    padding-bottom: 5px;
+}
+
+.sub-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #ccc;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 /* --------------------
-   ESTILOS DE ENLACES Y Clic (Corrección de Z-Index)
+   3. LISTAS Y PÁRRAFOS
    -------------------- */
-.nutrition-card .card-link {
-    /* Asume que el estilo base del card-link está en styles.css */
-    color: #00ff80; /* Sobreescribe con el color de acento */
-    font-size: 0.95em;
-    text-align: right;
-    margin-top: 15px; /* Separación del texto de párrafo */
-    
-    /* Corrección de Z-Index para asegurar que el enlace sea cliqueable */
-    position: relative; 
-    z-index: 10;
-    display: block;
+.article-content p {
+    margin-bottom: 20px;
+    color: #e0e0e0;
 }
 
-.nutrition-card .card-link:hover {
-    text-decoration: underline;
+.article-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.article-content ul li {
+    background-color: #2c2c2c; /* Tono de fondo diferente para las listas (cajas de puntos) */
+    padding: 12px;
+    margin-bottom: 8px;
+    border-left: 4px solid #00ff80;
+    border-radius: 4px;
+}
+
+.article-content strong {
+    color: #00ff80;
+}
+
+/* --------------------
+   4. ESTILOS DE IMAGEN Y SEPARADORES
+   -------------------- */
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+hr {
+    border: 0;
+    border-top: 2px dashed #444;
+    margin: 40px 0;
+}
+
+.conclusion {
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px;
+    background-color: #0d0d0d;
+    border-radius: 5px;
+    color: #00ff80;
+    margin-top: 40px;
 }

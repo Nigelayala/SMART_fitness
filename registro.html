@@ -1,76 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="registro.css">    
-    
+    <link rel="stylesheet" href="registro.css">    
+        <link rel="stylesheet" href="styless.css">
+    
 </head>
 <body>
+    
+        <header>
+        <div class="logo">SMART <span class="accent-text">FITNESS</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="#registro-entrenos">Seguimiento</a></li>
+                <li><a href="entrenamiento.html">Entrenamiento</a></li>
+                <li><a href="nutricion.html">Nutrición</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="registro-entrenos" class="section-content tracker-section">
+        <h2 class="section-title"> Seguimiento de tus Entrenamientos</h2>
+        <p class="section-description">Registra tus sesiones de gimnasio para medir tu fuerza y progresión a lo largo del tiempo. ¡El único camino para el progreso es la consistencia!</p>
+        
+        <div class="tracker-container">
+            
+            <div class="registro-form-box">
+                <h3>Nueva Sesión</h3>
+                
+                <form id="formulario-registro-dinamico">
+                    <div class="form-group">
+                        <label for="fecha-entreno">Fecha:</label>
+                        <input type="date" id="fecha-entreno" required>
+                    </div>
 
-    <section id="registro-entrenos" class="section-content tracker-section">
-        <h2 class="section-title"> Seguimiento de tus Entrenamientos</h2>
-        <p class="section-description">Registra tus sesiones de gimnasio para medir tu fuerza y progresión a lo largo del tiempo. ¡El único camino para el progreso es la consistencia!</p>
-        
-        <div class="tracker-container">
-            
-            <div class="registro-form-box">
-                <h3>Nueva Sesión</h3>
-                <form id="formulario-registro-entreno">
-                    
-                    <div class="form-group">
-                        <label for="fecha-entreno">Fecha:</label>
-                        <input type="date" id="fecha-entreno" required>
-                    </div>
+                    <div class="form-group">
+                        <label for="ejercicio">Ejercicio:</label>
+                        <input type="text" id="ejercicio" placeholder="Ej: Sentadilla, Press Banca" list="lista-ejercicios" required>
+                        <datalist id="lista-ejercicios"></datalist>
+                    </div>
+                    
+                    <hr style="border-top: 1px solid #444; margin: 20px 0;">
+                    
+                    <h4>Registro de Series:</h4>
+                    
+                    <div class="series-header form-group-inline">
+                        <strong>Peso</strong>
+                        <strong>Reps</strong>
+                        <strong style="text-align: right;">Acción</strong>
+                    </div>
 
-                    <div class="form-group">
-                        <label for="ejercicio">Ejercicio:</label>
-                        <input type="text" id="ejercicio" placeholder="Ej: Sentadilla, Press Banca" list="lista-ejercicios" required>
-                        <datalist id="lista-ejercicios"></datalist>
-                    </div>
-                    
-                    <div class="form-group-inline">
-                        <div class="form-group">
-                            <label for="peso-entreno">Peso (kg):</label>
-                            <input type="number" id="peso-entreno" step="0.5" min="0" value="50" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="series-entreno">Series:</label>
-                            <input type="number" id="series-entreno" min="1" value="3" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="repeticiones-entreno">Reps:</label>
-                            <input type="number" id="repeticiones-entreno" min="1" value="10" required>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="cta-button primary-cta">Guardar Sesión</button>
-                </form>
-            </div>
-            
-            <div class="historial-box">
-                <h3>Mi Historial de Carga</h3>
-                
-                <div id="historial-resumen" class="historial-resumen">
-                    <p>Total de ejercicios Guardados: <span id="total-entrenos" class="accent-text">0</span></p>
-                </div>
+                    <div id="series-list">
+                        </div>
+                    
+                    <button type="button" id="btn-add-serie" class="cta-button secondary-cta" style="margin-top: 15px;">+ Añadir Serie</button>
+                    
+                    <button type="submit" class="cta-button primary-cta" id="btn-guardar-ejercicio" style="margin-top: 20px;">Guardar Ejercicio Completo</button>
+                </form>
+            </div>
+            
+            <div class="historial-box">
+                <h3>Mi Historial de Carga</h3>
+                
+                <div id="historial-resumen" class="historial-resumen">
+                    <p>Total de ejercicios Guardados: <span id="total-entrenos" class="accent-text">0</span></p>
+                </div>
 
-                <table id="historial-tabla">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Ejercicio</th>
-                            <th>Peso (kg)</th>
-                            <th>Series</th>
-                            <th>Reps</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historial-cuerpo">
-                        <tr><td colspan="5" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-    <script src="calculadora.js"></script>
-    <script src="registro.js"></script> 
+                <table id="historial-tabla">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Ejercicio</th>
+                            <th>Series</th>
+                            <th>Acción</th>                         </tr>
+                    </thead>
+                    <tbody id="historial-cuerpo">
+                        <tr><td colspan="4" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    </main>
+    <footer>
+        <p>Smart Fitness &copy; 2025 | Hecho con Datos.</p>
+    </footer>
+    <script src="calculadora.js"></script>
+    <script src="registro.js"></script> 
 </body>
 </html>
