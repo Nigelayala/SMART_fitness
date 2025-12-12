@@ -1,0 +1,79 @@
+/* ==========================================================
+   nutricion.css: ESTILOS ESPECÍFICOS DE LA SECCIÓN DE NUTRICIÓN
+   ========================================================== */
+
+/* --------------------
+   ESTILOS GENERALES DE LA SECCIÓN
+   -------------------- */
+
+.nutrition-section {
+    background-color: #1a1a1a; /* Fondo oscuro para la sección */
+    padding: 60px 20px;
+}
+
+/* --------------------
+   CUADRÍCULA DE TARJETAS
+   -------------------- */
+
+.nutrition-grid {
+    display: grid;
+    /* Crea 4 columnas iguales en pantallas grandes, pero se adapta a 1 o 2 en móviles */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* --------------------
+   ESTILOS DE LAS TARJETAS INDIVIDUALES
+   -------------------- */
+
+.nutrition-card {
+    background-color: #242424; /* Fondo oscuro de la tarjeta */
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    
+    /* Configuración para que el enlace quede siempre abajo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nutrition-card:hover {
+    transform: translateY(-5px); /* Pequeño efecto de elevación */
+    border-color: #00ff80;      /* Borde de color neón al pasar el ratón */
+    box-shadow: 0 5px 15px rgba(0, 255, 128, 0.15); /* Sombra suave de neón */
+}
+
+.nutrition-card h3 {
+    color: #f0f0f0;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.nutrition-card p {
+    color: #ccc;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Permite que el párrafo ocupe el espacio restante */
+}
+
+/* --------------------
+   ESTILOS DE ENLACES Y Clic (Corrección de Z-Index)
+   -------------------- */
+.nutrition-card .card-link {
+    /* Asume que el estilo base del card-link está en styles.css */
+    color: #00ff80; /* Sobreescribe con el color de acento */
+    font-size: 0.95em;
+    text-align: right;
+    margin-top: 15px; /* Separación del texto de párrafo */
+    
+    /* Corrección de Z-Index para asegurar que el enlace sea cliqueable */
+    position: relative; 
+    z-index: 10;
+    display: block;
+}
+
+.nutrition-card .card-link:hover {
+    text-decoration: underline;
+}
