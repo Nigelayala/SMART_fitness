@@ -2,6 +2,15 @@
    REGISTRO DE ENTRENAMIENTOS (TRACKER)
    -------------------- */
 
+/* NUEVO SELECTOR: COLOR DE FONDO PARA TODA LA SECCIÓN */
+.tracker-section {
+    background-color: #202020; /* Un gris muy oscuro para destacar la sección */
+    padding: 60px 5%; /* Asegura que la sección completa use el padding del contenedor */
+    margin: 0 auto;
+    max-width: 1200px; 
+}
+
+
 .tracker-container {
     display: grid;
     grid-template-columns: 1fr 2fr; /* Dos columnas: Formulario (1/3) y Historial (2/3) */
