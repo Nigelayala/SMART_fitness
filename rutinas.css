@@ -1,0 +1,146 @@
+/* ==========================================================
+   entrenamiento.css: ESTILOS PARA EL ARTÍCULO DE RUTINAS
+   ========================================================== */
+
+/* --------------------
+   1. CONTENEDOR PRINCIPAL
+   -------------------- */
+
+.training-page-section {
+    /* Fondo ligeramente diferente al body para que la sección destaque */
+    background-color: #1f1f1f; 
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+.section-description {
+    /* Asegura que los enlaces internos (como a registro.html) se vean */
+    color: #00ff80;
+    text-decoration:solid;
+}
+
+/* --------------------
+   2. CUADRÍCULA DE PLANES
+   -------------------- */
+
+.plans-container {
+    display: grid;
+    /* Crea dos columnas por defecto para las cajas grandes de rutinas */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* --------------------
+   3. ESTILOS DE CADA PLAN (ARTICLE)
+   -------------------- */
+
+.article-plan {
+    background-color: #242424; /* Fondo de la tarjeta */
+    padding: 30px;
+    border-radius: 10px;
+    border-top: 4px solid #00ff80; /* Línea de acento neón */
+    transition: box-shadow 0.3s ease;
+    height: fit-content;
+}
+
+.article-plan:hover {
+    box-shadow: 0 10px 25px rgba(0, 255, 128, 0.15);
+}
+
+.article-subtitle {
+    color: #f0f0f0;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+/* --------------------
+   4. METADATOS Y TAGS
+   -------------------- */
+
+.plan-meta {
+    margin-bottom: 20px;
+}
+
+.plan-tag {
+    display: inline-block;
+    font-size: 0.85em;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+/* Estilos específicos para Tags (puedes añadir más si quieres colores diferentes) */
+.tag-frecuencia {
+    background-color: rgba(0, 255, 128, 0.2);
+    color: #00ff80;
+}
+.tag-nivel {
+    background-color: rgba(255, 165, 0, 0.2);
+    color: orange;
+}
+
+
+/* --------------------
+   5. LISTAS Y EJERCICIOS
+   -------------------- */
+
+.day-title {
+    font-size: 1.2em;
+    color: #ccc;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 5px;
+}
+
+.benefit-list {
+    list-style: none; /* Eliminar el estilo de lista por defecto */
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.benefit-list li {
+    background-color: #2e2e2e; /* Fondo de lista ligeramente más claro */
+    padding: 10px;
+    margin-bottom: 8px;
+    border-left: 3px solid #00ff80;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.benefit-list li strong {
+    color: #00ff80;
+}
+
+
+/* --------------------
+   6. CONCLUSIÓN Y CTA FINAL
+   -------------------- */
+
+.conclusion-box {
+    text-align: center;
+    background-color: #0d0d0d;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 60px;
+}
+
+.conclusion-box p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+.conclusion-box .secondary-cta {
+    /* Sobrescribe el color del botón CTA para que se vea bien en este fondo */
+    background-color: #00ff80;
+    color: #1a1a1a;
+}
+
+.conclusion-box .secondary-cta:hover {
+    background-color: #33ff99;
+}
