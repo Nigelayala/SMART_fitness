@@ -10,6 +10,7 @@
     width: 100%; /* Asegura que el fondo ocupe el 100% */
     padding: 60px 0; /* Quitamos padding lateral aquí, se lo ponemos al contenedor */
     margin: 0;
+    justify-content: center;
 }
 
 /* --------------------
@@ -102,7 +103,7 @@ nav ul li a:hover {
     width: 90%; 
     max-width: 350px; 
     margin: 0 auto; 
-    text-align: left; /* Restaura la alineación izquierda para las etiquetas */
+    text-align: center; /* <<< CORRECCIÓN APLICADA: Esto centra los elementos de bloque y texto */
 }
 
 /* Aseguramos que los campos de grupo individuales ocupen todo el ancho del formulario centrado */
@@ -115,6 +116,8 @@ nav ul li a:hover {
     display: block;
     width: 100%;
     margin-bottom: 5px;
+    /* Centra el texto de la etiqueta */
+    text-align: center;
 }
 
 .form-group input, .form-group select {
@@ -125,6 +128,8 @@ nav ul li a:hover {
     color: #f0f0f0;
     padding: 8px;
     border-radius: 4px;
+    /* Centra el texto dentro de los campos */
+    text-align: center;
 }
 
 /* Aseguramos que los botones sigan centrados */

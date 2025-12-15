@@ -1,75 +1,72 @@
 // ==========================================================
-// registro.js: Lógica de Registro Dinámico de Series
+// registro.js: Lógica de Registro Dinámico de Series y Persistencia
 // ==========================================================
 
-// Lista estática inicial de ejercicios comunes (Igual que antes)
+// Lista estática inicial de ejercicios comunes
 const EJERCICIOS_BASE = [
-    { id: 'pb', nombre: 'Press Banca', grupo: 'Pecho' },
-    { id: 's', nombre: 'Sentadilla', grupo: 'Pierna' },
-    { id: 'pm', nombre: 'Peso Muerto', grupo: 'Espalda' }
+    { id: 'pb', nombre: 'Press Banca', grupo: 'Pecho' },
+    { id: 's', nombre: 'Sentadilla', grupo: 'Pierna' },
+    { id: 'pm', nombre: 'Peso Muerto', grupo: 'Espalda' }
 ];
 
-// --- FUNCIONES DE UTILIDAD (No modificadas) ---
+// --- FUNCIONES DE UTILIDAD ---
 
 function obtenerTodosLosEjercicios() {
-    const ejerciciosGuardados = JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
-    return [...EJERCICIOS_BASE, ...ejerciciosGuardados];
+    const ejerciciosGuardados = JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
+    return [...EJERCICIOS_BASE, ...ejerciciosGuardados];
 }
 
 function obtenerEjerciciosPersonalizados() {
-    return JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
+    return JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
 }
 
 function guardarNuevoEjercicio(nombreEjercicio) {
-    // Lógica para guardar nuevos ejercicios en el datalist (sin cambios)
-    const nombreNormalizado = nombreEjercicio.trim();
-    const todosLosEjercicios = obtenerTodosLosEjercicios();
+    const nombreNormalizado = nombreEjercicio.trim();
+    const todosLosEjercicios = obtenerTodosLosEjercicios();
 
-    const yaExiste = todosLosEjercicios.some(ej => ej.nombre.toLowerCase() === nombreNormalizado.toLowerCase());
+    const yaExiste = todosLosEjercicios.some(ej => ej.nombre.toLowerCase() === nombreNormalizado.toLowerCase());
 
-    if (!yaExiste) {
-        let ejerciciosPersonalizados = obtenerEjerciciosPersonalizados();
-        const nuevoEjercicio = {
-            id: 'user-' + Date.now(),
-            nombre: nombreNormalizado,
-            grupo: 'Personalizado'
-        };
-        ejerciciosPersonalizados.push(nuevoEjercicio);
-        localStorage.setItem('ejerciciosPersonalizados', JSON.stringify(ejerciciosPersonalizados));
-        inicializarDatalistEjercicios(); 
-    }
+    if (!yaExiste) {
+        let ejerciciosPersonalizados = obtenerEjerciciosPersonalizados();
+        const nuevoEjercicio = {
+            id: 'user-' + Date.now(),
+            nombre: nombreNormalizado,
+            grupo: 'Personalizado'
+        };
+        ejerciciosPersonalizados.push(nuevoEjercicio);
+        localStorage.setItem('ejerciciosPersonalizados', JSON.stringify(ejerciciosPersonalizados));
+        inicializarDatalistEjercicios(); 
+    }
 }
 
 function inicializarDatalistEjercicios() {
-    const datalist = document.getElementById('lista-ejercicios');
-    if (!datalist) return;
-    
-    const ejercicios = obtenerTodosLosEjercicios();
-    datalist.innerHTML = '';
-    
-    ejercicios.forEach(ej => {
-        const option = document.createElement('option');
-        option.value = ej.nombre;
-        datalist.appendChild(option);
-    });
+    const datalist = document.getElementById('lista-ejercicios');
+    if (!datalist) return;
+    
+    const ejercicios = obtenerTodosLosEjercicios();
+    datalist.innerHTML = '';
+    
+    ejercicios.forEach(ej => {
+        const option = document.createElement('option');
+        option.value = ej.nombre;
+        datalist.appendChild(option);
+    });
 }
 
 function obtenerHistorial() {
-    return JSON.parse(localStorage.getItem('historialEntrenos')) || [];
+    return JSON.parse(localStorage.getItem('historialEntrenos')) || [];
 }
 
-// Guarda un NUEVO EJERCICIO COMPLETO (con sus series) en Local Storage
 function guardarEjercicioCompleto(ejercicioRegistro) {
-    const historial = obtenerHistorial();
-    historial.push(ejercicioRegistro);
-    localStorage.setItem('historialEntrenos', JSON.stringify(historial));
-    
-    mostrarHistorial(); 
+    let historial = obtenerHistorial();
+    historial.push(ejercicioRegistro);
+    localStorage.setItem('historialEntrenos', JSON.stringify(historial));
+    
+    mostrarHistorial(); 
 }
 
 // --- FUNCIONES DE INTERFAZ DINÁMICA ---
 
-// Genera el HTML para una nueva fila de serie
 function createSerieRow() {
     return `
         <div class="form-group-inline serie-row">
@@ -86,7 +83,6 @@ function createSerieRow() {
     `;
 }
 
-// Añade una fila de serie al contenedor
 function addSerieToForm() {
     const list = document.getElementById('series-list');
     list.insertAdjacentHTML('beforeend', createSerieRow());
@@ -103,13 +99,12 @@ window.eliminarRegistro = function(timestamp) {
     const nuevoHistorial = historial.filter(registro => registro.timestamp !== timestamp);
     
     localStorage.setItem('historialEntrenos', JSON.stringify(nuevoHistorial));
-    mostrarHistorial();
+    mostrarHistorial(); 
 }
 
 
 // --- LÓGICA DE GUARDADO FINAL ---
 
-// Maneja el guardado del Ejercicio COMPLETO con todas sus series
 function manejarGuardadoEjercicio(event) {
     event.preventDefault();
     
@@ -138,7 +133,6 @@ function manejarGuardadoEjercicio(event) {
 
         if (isNaN(peso) || isNaN(reps) || peso < 0 || reps < 1) {
             isValid = false;
-            // Opcional: Resaltar la fila con error
             row.style.border = '1px solid red'; 
         }
 
@@ -157,7 +151,7 @@ function manejarGuardadoEjercicio(event) {
     const registroEjercicio = {
         fecha: fecha,
         ejercicio: ejercicioNombre,
-        series: seriesData, // Un array de objetos {peso, reps, numeroSerie}
+        series: seriesData,
         totalSeries: seriesData.length,
         timestamp: Date.now()
     };
@@ -166,47 +160,57 @@ function manejarGuardadoEjercicio(event) {
     guardarNuevoEjercicio(ejercicioNombre);
 
     document.getElementById('formulario-registro-dinamico').reset();
-    document.getElementById('series-list').innerHTML = ''; // Limpiar series
+    document.getElementById('series-list').innerHTML = '';
+    addSerieToForm(); 
 
     alert(`¡Ejercicio de ${ejercicioNombre} con ${seriesData.length} series guardado con éxito!`);
 }
 
 
-// --- FUNCIÓN PRINCIPAL DE RENDERIZADO DE TABLA ---
+// --- FUNCIÓN PRINCIPAL DE RENDERIZADO DE TABLA (VERSIÓN ÚNICA Y ROBUSTA) ---
 
 function mostrarHistorial() {
-    const tbody = document.getElementById('historial-cuerpo');
-    const totalEntrenosSpan = document.getElementById('total-entrenos');
-    const historial = obtenerHistorial();
-    
-    if (!tbody || !totalEntrenosSpan) return;
+    const tbody = document.getElementById('historial-cuerpo');
+    const totalEntrenosSpan = document.getElementById('total-entrenos');
+    const historial = obtenerHistorial();
+    
+    if (!tbody || !totalEntrenosSpan) return;
 
-    tbody.innerHTML = ''; 
-    totalEntrenosSpan.textContent = historial.length;
+    tbody.innerHTML = ''; 
+    totalEntrenosSpan.textContent = historial.length;
+    
+    const COLSPAN_COUNT = 4;
 
-    if (historial.length === 0) {
-        // Colspan ahora es 4
-        tbody.innerHTML = '<tr><td colspan="4" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>';
-        return;
-    }
+    if (historial.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="${COLSPAN_COUNT}" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>`;
+        return;
+    }
 
-    // El más reciente se muestra arriba
-    historial.slice().reverse().forEach(registro => {
-        const row = tbody.insertRow();
+    // Usamos reverse() para mostrar los más recientes arriba
+    historial.slice().reverse().forEach(registro => {
         
-        // Columna de Series: Muestra el resumen (Ej: 3x10@80kg)
-        const resumenSeries = registro.series
+        // **CORRECCIÓN CLAVE: Asegurar que 'registro.series' sea un array**
+        const seriesArray = Array.isArray(registro.series) ? registro.series : [];
+        
+        // 1. Crear el resumen detallado de series
+        const resumenSeries = seriesArray
             .map(s => `${s.peso}kg x ${s.reps}`)
-            .join(' / ');
+            .join(' | ');
         
-        row.insertCell().textContent = registro.fecha;
-        row.insertCell().textContent = registro.ejercicio;
-        row.insertCell().textContent = resumenSeries;
+        // 2. Usar un template literal (más seguro)
+        const rowHTML = `
+            <tr>
+                <td>${registro.fecha}</td>
+                <td>${registro.ejercicio}</td>
+                <td>${resumenSeries}</td>
+                <td style="text-align: center;">
+                    <button class="delete-btn" onclick="eliminarRegistro(${registro.timestamp})">🗑️</button>
+                </td>
+            </tr>
+        `;
         
-        // Columna de Acción (Eliminar)
-        const deleteCell = row.insertCell();
-        deleteCell.innerHTML = `<button class="delete-btn" onclick="eliminarRegistro(${registro.timestamp})">🗑️</button>`;
-    });
+        tbody.insertAdjacentHTML('beforeend', rowHTML);
+    });
 }
 
 
@@ -216,8 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAddSerie = document.getElementById('btn-add-serie');
     if (btnAddSerie) {
         btnAddSerie.addEventListener('click', addSerieToForm);
-        // Opcional: Añadir la primera serie por defecto al cargar
-        addSerieToForm(); 
+        // Añadir una serie inicial al cargar, si no hay ninguna
+        if (document.querySelectorAll('#series-list .serie-row').length === 0) {
+            addSerieToForm(); 
+        }
     }
     
     // 2. Enlace del formulario (Usamos el botón de submit para el guardado final)
@@ -226,11 +232,13 @@ document.addEventListener('DOMContentLoaded', () => {
         formRegistro.addEventListener('submit', manejarGuardadoEjercicio);
     }
     
-    // 3. Inicializar datalist y tabla
-    if (document.getElementById('lista-ejercicios')) {
-        inicializarDatalistEjercicios();
-    }
-    if (document.getElementById('historial-tabla')) {
-        mostrarHistorial();
-    }
+    // 3. Inicializar datalist y la tabla 
+    if (document.getElementById('lista-ejercicios')) {
+        inicializarDatalistEjercicios();
+    }
+    
+    // LLAMADA CLAVE: Esto carga los datos guardados en la tabla
+    if (document.getElementById('historial-tabla')) {
+        mostrarHistorial();
+    }
 });
