@@ -5,11 +5,15 @@
 /* --------------------
    ESTILOS DE SECCIÓN Y FONDO
    -------------------- */
+
+
 .tracker-section {
     background-color: #202020; /* Un gris muy oscuro para destacar la sección */
     width: 100%; /* Asegura que el fondo ocupe el 100% */
     padding: 60px 0; /* Quitamos padding lateral aquí, se lo ponemos al contenedor */
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
@@ -67,11 +71,7 @@ nav ul li a:hover {
 
 /* Contenedor principal de la rejilla (limita y centra el contenido) */
 .tracker-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Dos columnas: Formulario (1/3) y Historial (2/3) */
-    gap: 40px;
-    margin: 0 auto; /* Centra el contenido */
-    max-width: 1200px; /* Limita el ancho del contenido */
+    max-width: 900px; /* Limita el ancho del contenido */
     padding: 30px 5%; /* Padding lateral para que no se pegue a los bordes */
 }
 
@@ -81,7 +81,7 @@ nav ul li a:hover {
 .registro-form-box {
     background-color: #242424;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: 20px;
     height: fit-content; 
     /* CLAVE: Centra el contenido horizontalmente (títulos, formulario) */
     display: flex;
