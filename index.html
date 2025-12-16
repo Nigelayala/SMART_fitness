@@ -1,146 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Fitness | Mide. Entrena. Transfórmate.</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styless.css">       
-    <link rel="stylesheet" href="calculadora.css"> 
-    <link rel="stylesheet" href="registro.css">
-    <link rel="stylesheet" href="nutricion.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fitness | Mide. Entrena. Transfórmate.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styless.css"> 
+    <link rel="stylesheet" href="calculadora.css"> 
+    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="nutricion.css">
 </head>
 <body>
+    
+    <header>
+        <div class="logo">SMART <span class="accent-text">FITNESS</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="registro.html">Registro</a></li>
+                <li><a href="entrenamiento.html">Entrenamiento</a></li>
+                <li><a href="nutricion.html">Nutrición</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <header>
-        <div class="logo">SMART <span class="accent-text">FITNESS</span></div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="calculadora.html">Calculadora</a></li>
-                <li><a href="registro.html">Registro</a></li>
-                <li><a href="entrenamiento.html">Entrenamiento</a></li>
-                <li><a href="nutricion.html">Nutrición</a></li>
-            </ul>
-        </nav>
-    </header>
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>Tu Potencial. Medido.</h1>
+                <p class="subtitle">Datos precisos, planes inteligentes. Deja de adivinar y empieza a dominar tu progreso.</p>
+                <div style="display: flex; gap: 20px; margin-top: 20px; justify-content: center;">
+					<a href="calculadora.html" class="cta-button">Calcula tu Energía</a>
+					<button id="btn-yeah-buddy" class="cta-button secondary-cta" style="background-color: #ff5733; border-color: #ff5733;">🔊 ¡YEAH BUDDY!</button>
+				</div>
+                </div>
+        </section>
+        <section id="herramientas" class="section-content tools-section">
+            <h2 class="section-title">🛠️ Herramientas Inteligentes</h2>
+            <div class="tool-cards">
+                <div class="card card-tdee">
+                    <h3>Calculadora TDEE y Macros</h3>
+                    <p>Calcula tu Gasto Energético y desglosa tus proteínas, carbohidratos y grasas.</p>
+                    <a href="calculadora.html" class="card-link">Usar Herramienta →</a>
+                </div>
+                <div class="card card-tracker">
+                    <h3>Registro de Entrenos</h3>
+                    <p>Rastrea tus series, repeticiones y peso. Observa tu progreso semana tras semana.</p>
+                    <a href="registro.html" class="card-link">Registrar Sesión →</a>
+                </div>
+                <div class="card card-macros">
+                    <h3>Calculadora IMC</h3>
+                    <p>Evalúa tu Índice de Masa Corporal de forma rápida y sencilla.</p>
+                    <a href="#" class="card-link disabled">Próximamente...</a>
+                </div>
+            </div>
+        </section>
+        <section id="entrenamiento" class="section-content training-section">
+            <h2 class="section-title">💪 Rutinas Basadas en Datos</h2>
+            <p class="section-description">Descubre planes de entrenamiento optimizados para tu objetivo. Desde fuerza bruta hasta resistencia, todo con la precisión que necesitas.</p>
+            <div class="training-grid">
+                <div class="training-plan">
+                    <h3>Fuerza Máxima (5x5)</h3>
+                    <p>Un plan "HEVY" de 4 días a la semana enfocado en ganar fuerza en los levantamientos clave.</p>
+                    <span class="plan-tag tag-heavy">Fuerza</span>
+                </div>
+                <div class="training-plan">
+                    <h3>Definición y Cardio</h3>
+                    <p>Plan de alta intensidad con enfoque metabólico para quemar grasa manteniendo la masa muscular.</p>
+                    <span class="plan-tag tag-cardio">Definición</span>
+                </div>
+                <div class="training-plan">
+                    <h3>Full Body Express</h3>
+                    <p>Rutinas de cuerpo completo de 3 días para personas con poco tiempo disponible.</p>
+                    <span class="plan-tag tag-time">Tiempo Reducido</span>
+                </div>
+            </div>
+            <div class="view-all-link">
+                <a href="rutinas.html" class="card-link">Ver todas las rutinas →</a>
+            </div>
+        </section>
+        <section id="nutricion" class="section-content nutrition-section">
+            <h2 class="section-title">🍎 Guías de Nutrición Precisa</h2>
+            <p class="section-description">La nutrición es la mitad de la batalla. Utiliza nuestros recursos para optimizar tu dieta basándote en los números que obtuviste en la calculadora.</p>
+            <div class="nutrition-grid">
+                <div class="nutrition-card card-fundamentals">
+                    <h3>Fundamentos de Macros</h3>
+                    <p>Guía rápida sobre cómo contar y balancear proteínas, carbohidratos y grasas para tu objetivo.</p>
+                    <a href="nutricion/nutricion.html" class="card-link">Leer guía de Fundamentos →</a>
+                </div>
+                <div class="nutrition-card card-planning">
+                    <h3>Planificación de Comidas</h3>
+                    <p>Aprende a distribuir tus calorías de Definición o Volumen en 3, 4 o 5 comidas diarias.</p>
+                    <a href="#" class="card-link">Ver ejemplos de Dieta →</a>
+                </div>
+                <div class="nutrition-card card-faq">
+                    <h3>Mitos Comunes</h3>
+                    <p>Desmentimos mitos populares sobre el fitness, el cardio en ayunas y la quema de grasa localizada.</p>
+                    <a href="#" class="card-link">Revisar FAQs →</a>
+                </div>
+            </div>
+        </section>
+        <section class="cta-final">
+            <h2 class="cta-final-title">¿Listo para dejar de entrenar a ciegas?</h2>
+            <a href="calculadora.html" class="cta-button secondary-cta">Comienza tu transformación con datos</a>
+        </section>
+    </main>
 
-    <main>
-        <section id="inicio" class="hero">
-            <div class="hero-content">
-                <h1>Tu Potencial. Medido.</h1>
-                <p class="subtitle">Datos precisos, planes inteligentes. Deja de adivinar y empieza a dominar tu progreso.</p>
-                
-                                <div style="display: flex; gap: 20px; margin-top: 20px; justify-content: center;">
-                    <a href="calculadora.html" class="cta-button">Calcula tu Energía Hoy</a> 
-                    <button id="btn-yeah-buddy" class="cta-button secondary-cta" style="background-color: #ff5733; border-color: #ff5733;">
-                        🔊 ¡YEAH BUDDY!
-                    </button>
-                </div>
-                            </div>
-        </section>
+    <footer>
+        <p>Smart Fitness &copy; 2025 | Política de Privacidad | <span class="accent-text">Hecho con Datos.</span></p>
+    </footer>
 
-        <section id="herramientas" class="section-content tools-section">
-            <h2 class="section-title">🛠️ Herramientas Inteligentes</h2>
-            <div class="tool-cards">
-                
-                <div class="card card-tdee">
-                    <h3>Calculadora TDEE y Macros</h3>
-                    <p>Calcula tu Gasto Energético y desglosa tus proteínas, carbohidratos y grasas.</p>
-                    <a href="calculadora.html" class="card-link">Usar Herramienta →</a>
-                </div>
-                
-                <div class="card card-tracker">
-                    <h3>Registro de Entrenos</h3>
-                    <p>Rastrea tus series, repeticiones y peso. Observa tu progreso semana tras semana.</p>
-                    <a href="registro.html" class="card-link">Registrar Sesión →</a>
-                </div>
-
-                <div class="card card-macros">
-                    <h3>Calculadora IMC</h3>
-                    <p>Evalúa tu Índice de Masa Corporal de forma rápida y sencilla.</p>
-                    <a href="#" class="card-link disabled">Próximamente...</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="entrenamiento" class="section-content training-section">
-            <h2 class="section-title">💪 Rutinas Basadas en Datos</h2>
-            <p class="section-description">Descubre planes de entrenamiento optimizados para tu objetivo. Desde fuerza bruta hasta resistencia, todo con la precisión que necesitas.</p>
-            
-            <div class="training-grid">
-                
-                <div class="training-plan">
-                    <h3>Fuerza Máxima (5x5)</h3>
-                    <p>Un plan "HEVY" de 4 días a la semana enfocado en ganar fuerza en los levantamientos clave.</p>
-                    <span class="plan-tag tag-heavy">Fuerza</span>
-                </div>
-                
-                <div class="training-plan">
-                    <h3>Definición y Cardio</h3>
-                    <p>Plan de alta intensidad con enfoque metabólico para quemar grasa manteniendo la masa muscular.</p>
-                    <span class="plan-tag tag-cardio">Definición</span>
-                </div>
-
-                <div class="training-plan">
-                    <h3>Full Body Express</h3>
-                    <p>Rutinas de cuerpo completo de 3 días para personas con poco tiempo disponible.</p>
-                    <span class="plan-tag tag-time">Tiempo Reducido</span>
-                </div>
-            </div>
-
-            <div class="view-all-link">
-                <a href="rutinas.html" class="card-link">Ver todas las rutinas →</a>
-            </div>
-        </section>
-
-        <section id="nutricion" class="section-content nutrition-section">
-            <h2 class="section-title">🍎 Guías de Nutrición Precisa</h2>
-            <p class="section-description">La nutrición es la mitad de la batalla. Utiliza nuestros recursos para optimizar tu dieta basándote en los números que obtuviste en la calculadora.</p>
-            
-            <div class="nutrition-grid">
-                
-                <div class="nutrition-card card-fundamentals">
-                    <h3>Fundamentos de Macros</h3>
-                    <p>Guía rápida sobre cómo contar y balancear proteínas, carbohidratos y grasas para tu objetivo.</p>
-                    <a href="nutricion/nutricion.html" class="card-link">Leer guía de Fundamentos →</a>
-                </div>
-                
-                <div class="nutrition-card card-planning">
-                    <h3>Planificación de Comidas</h3>
-                    <p>Aprende a distribuir tus calorías de Definición o Volumen en 3, 4 o 5 comidas diarias.</p>
-                    <a href="#" class="card-link">Ver ejemplos de Dieta →</a>
-                </div>
-
-                <div class="nutrition-card card-supplements">
-                    <h3>Suplementación Basada en Ciencia</h3>
-                    <p>Análisis objetivo de creatina, proteína y cafeína. ¿Merecen la pena para tu objetivo?</p>
-                    <a href="#" class="card-link">Ver análisis de Suplementos →</a>
-                </div>
-                
-                <div class="nutrition-card card-faq">
-                    <h3>Mitos Comunes</h3>
-                    <p>Desmentimos mitos populares sobre el fitness, el cardio en ayunas y la quema de grasa localizada.</p>
-                    <a href="#" class="card-link">Revisar FAQs →</a>
-                </div>
-                
-            </div>
-        </section>
-        
-        <section id="contacto" class="section-content cta-final">
-            <h2>¿Listo para dejar de entrenar a ciegas?</h2>
-            <a href="calculadora.html" class="cta-button secondary-cta">Comienza tu transformación con datos</a>
-        </section>
-    </main>
-
-    <footer>
-        <p>Smart Fitness &copy; 2025 | Política de Privacidad | <span class="accent-text">Hecho con Datos.</span></p>
-    </footer>
-
-    <script src="calculadora.js"></script>
-    <script src="registro.js"></script> 
-    <script src="motivacion.js"></script>
-</body>
+    <script src="calculadora.js"></script>
+    <script src="registro.js"></script> 
+    <script src="motivacion.js"></script>
+    </body>
 </html>

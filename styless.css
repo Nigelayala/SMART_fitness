@@ -20,6 +20,18 @@ h1, h2, h3 {
     font-weight: 900; 
 }
 
+p {
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+    color: #f0f0f0;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 0;
+}
+
 .accent-text {
     color: #00ff80; /* Verde Neón */
 }
@@ -96,6 +108,7 @@ nav ul li a:hover {
     font-size: 1.3em;
     color: #ccc;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 /* --------------------
@@ -166,7 +179,7 @@ nav ul li a:hover {
     font-size: 1.1em;
     color: #bbb;
     margin-bottom: 40px;
-    max-width: 800px;
+    max-width: 1020px;
     margin-left: 15px;
 }
 
@@ -315,6 +328,12 @@ nav ul li a:hover {
     max-width: 1200px;
 }
 
+.cta-final-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+}
+
 .cta-final .secondary-cta {
     background-color: #00ff80;
     color: #1a1a1a;
@@ -326,9 +345,11 @@ nav ul li a:hover {
 
 footer {
     background-color: #0d0d0d;
-    text-align: center;
     padding: 15px;
     font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #777;
     margin-top: 40px;
 }

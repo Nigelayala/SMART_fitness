@@ -17,6 +17,7 @@
     /* Asegura que los enlaces internos (como a registro.html) se vean */
     color: #00ff80;
     text-decoration:solid;
+    width: 1200px;
 }
 
 /* --------------------
