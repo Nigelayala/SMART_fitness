@@ -353,3 +353,90 @@ footer {
     color: #777;
     margin-top: 40px;
 }
+/* ==========================================================
+   REGLAS RESPONSIVE GENERALES (Toda la Web)
+   ========================================================== */
+
+/* 1. Contenedores Flexibles */
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* 2. Ajustes para Tablets y Laptops pequeñas (Menos de 992px) */
+@media (max-width: 992px) {
+    /* Los títulos grandes bajan de tamaño */
+    .display-3 {
+        font-size: 2.5rem !important;
+    }
+    
+    h1 { font-size: 2rem; }
+    
+    /* El Jumbotron reduce su acolchado */
+    .jumbotron {
+        padding: 40px 20px !important;
+    }
+
+    /* Las columnas de Bootstrap se apilan automáticamente, 
+       pero forzamos que ocupen el 100% */
+    .col-lg-5, .col-lg-7 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+}
+
+/* 3. Ajustes para Móviles (Menos de 768px) */
+@media (max-width: 768px) {
+    /* Títulos aún más pequeños para que no se corten */
+    .display-3 {
+        font-size: 1.8rem !important;
+    }
+
+    h1 { font-size: 1.5rem !important; }
+
+    /* Ajuste de navegación si no usas menú hamburguesa */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Tablas responsivas: permite scroll lateral para que no rompa el diseño */
+    .table-responsive, 
+    #exerciseTable {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Reducir márgenes laterales en tarjetas de información */
+    .card {
+        padding: 1.5rem !important;
+        margin: 0 10px;
+    }
+
+    /* Botones más grandes para facilitar el clic táctil */
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 12px;
+    }
+}
+
+/* 4. Imágenes y Videos Flexibles */
+img, svg, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 5. Ajuste fino para pantallas muy pequeñas (iPhone SE, etc.) */
+@media (max-width: 380px) {
+    .human-body {
+        transform: scale(0.75); /* Encogemos el muñeco para que no se salga */
+        margin-left: -10%; /* Lo centramos visualmente */
+    }
+}

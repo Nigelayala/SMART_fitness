@@ -1,0 +1,95 @@
+{
+  "pecho": {
+    "name": "Pecho",
+    "exercises": [
+      { "name": "Press de banca", "sets": "3-4", "reps": "8-12" },
+      { "name": "Flexiones", "sets": "3-4", "reps": "15-20" },
+      { "name": "Aperturas con mancuernas", "sets": "3", "reps": "10-15" },
+      { "name": "Press inclinado", "sets": "3-4", "reps": "8-12" },
+      { "name": "Fondos en paralelas", "sets": "3", "reps": "8-12" }
+    ]
+  },
+  "hombros": {
+    "name": "Hombros",
+    "exercises": [
+      { "name": "Press militar", "sets": "3-4", "reps": "8-12" },
+      { "name": "Elevaciones laterales", "sets": "3", "reps": "12-15" },
+      { "name": "Elevaciones frontales", "sets": "3", "reps": "10-12" },
+      { "name": "Pájaros", "sets": "3", "reps": "12-15" },
+      { "name": "Press Arnold", "sets": "3", "reps": "10-12" }
+    ]
+  },
+  "biceps": {
+    "name": "Bíceps",
+    "exercises": [
+      { "name": "Curl con barra", "sets": "3-4", "reps": "10-12" },
+      { "name": "Curl martillo", "sets": "3", "reps": "10-12" },
+      { "name": "Curl concentrado", "sets": "3", "reps": "10-12" },
+      { "name": "Curl con polea", "sets": "3", "reps": "12-15" }
+    ]
+  },
+  "abdominales": {
+    "name": "Abdominales",
+    "exercises": [
+      { "name": "Crunch", "sets": "3-4", "reps": "15-20" },
+      { "name": "Plancha", "sets": "3", "reps": "30-60s" },
+      { "name": "Elevación de piernas", "sets": "3", "reps": "12-15" },
+      { "name": "Bicicleta", "sets": "3", "reps": "20-30" },
+      { "name": "Plancha lateral", "sets": "3", "reps": "30-45s" }
+    ]
+  },
+  "cuadriceps": {
+    "name": "Cuádriceps",
+    "exercises": [
+      { "name": "Sentadillas", "sets": "3-4", "reps": "8-12" },
+      { "name": "Prensa de piernas", "sets": "3-4", "reps": "10-15" },
+      { "name": "Zancadas", "sets": "3", "reps": "10-12 por pierna" },
+      { "name": "Extensiones de cuádriceps", "sets": "3", "reps": "12-15" }
+    ]
+  },
+  "dorsales": {
+    "name": "Dorsales",
+    "exercises": [
+      { "name": "Dominadas", "sets": "3-4", "reps": "6-10" },
+      { "name": "Remo con barra", "sets": "3-4", "reps": "8-12" },
+      { "name": "Jalón al pecho", "sets": "3-4", "reps": "10-12" },
+      { "name": "Remo con mancuerna", "sets": "3", "reps": "10-12" },
+      { "name": "Peso muerto", "sets": "3-4", "reps": "6-8" }
+    ]
+  },
+  "triceps": {
+    "name": "Tríceps",
+    "exercises": [
+      { "name": "Press francés", "sets": "3-4", "reps": "10-12" },
+      { "name": "Fondos para tríceps", "sets": "3", "reps": "10-15" },
+      { "name": "Extensiones en polea", "sets": "3", "reps": "12-15" },
+      { "name": "Patada de tríceps", "sets": "3", "reps": "10-12" }
+    ]
+  },
+  "gluteos": {
+    "name": "Glúteos",
+    "exercises": [
+      { "name": "Hip thrust", "sets": "3-4", "reps": "10-12" },
+      { "name": "Patada de glúteo", "sets": "3", "reps": "12-15" },
+      { "name": "Peso muerto rumano", "sets": "3-4", "reps": "8-12" },
+      { "name": "Zancadas inversas", "sets": "3", "reps": "10-12" }
+    ]
+  },
+  "femoral": {
+    "name": "Femoral",
+    "exercises": [
+      { "name": "Curl femoral", "sets": "3-4", "reps": "10-12" },
+      { "name": "Peso muerto rumano", "sets": "3-4", "reps": "8-12" },
+      { "name": "Buenos días", "sets": "3", "reps": "10-12" },
+      { "name": "Puente de glúteo", "sets": "3", "reps": "12-15" }
+    ]
+  },
+  "gemelos": {
+    "name": "Gemelos",
+    "exercises": [
+      { "name": "Elevación de talones de pie", "sets": "4", "reps": "15-20" },
+      { "name": "Elevación de talones sentado", "sets": "3", "reps": "15-20" },
+      { "name": "Elevación en prensa", "sets": "3", "reps": "12-15" }
+    ]
+  }
+}

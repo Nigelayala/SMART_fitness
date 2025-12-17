@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Muscular Interactivo</title>
+    
+    <!-- Fuente Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="mapamusculo.css">
+</head>
+<body>
+      <header>
+        <div class="logo">SMART <span class="accent-text">FITNESS</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="registro.html">Registro</a></li>
+                <li><a href="mapamusculo.html">Mapa Interactivo</a></li>
+                <li><a href="nutricion.html">Nutrición</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="max-w-6xl">
+        <!-- Título -->
+        <h1>Mapa Muscular Interactivo</h1>
+        <p class="subtitle">
+            Haz clic en cualquier grupo muscular para ver ejercicios
+        </p>
+
+        <!-- Botones de Vista -->
+        <div class="flex justify-center gap-4 mb-8">
+            <button onclick="changeView('front')" id="btnFront" class="active">
+                ← Vista Frontal
+            </button>
+            <button onclick="changeView('back')" id="btnBack">
+                Vista Trasera →
+            </button>
+        </div>
+
+        <!-- Mapa del Cuerpo -->
+        <div class="relative bg-slate-800 rounded-2xl shadow-2xl p-8 mb-8">
+            <svg id="bodyMap" viewBox="0 0 400 600">
+                <!-- Vista Frontal -->
+                <g id="frontView">
+                    <!-- Cabeza -->
+                    <ellipse cx="200" cy="50" rx="35" ry="40" fill="#4B5563" />
+                    <rect x="185" y="85" width="30" height="25" fill="#6B7280" />
+
+                    <!-- Hombros -->
+                    <ellipse cx="145" cy="120" rx="30" ry="20" fill="#3B82F6" class="muscle-part" onclick="showExercises('hombros')" />
+                    <ellipse cx="255" cy="120" rx="30" ry="20" fill="#3B82F6" class="muscle-part" onclick="showExercises('hombros')" />
+
+                    <!-- Pecho -->
+                    <path d="M 170 130 Q 200 140 230 130 L 230 170 Q 200 180 170 170 Z" 
+                          fill="#EF4444" class="muscle-part" onclick="showExercises('pecho')" />
+
+                    <!-- Bíceps -->
+                    <ellipse cx="135" cy="160" rx="15" ry="35" fill="#10B981" class="muscle-part" onclick="showExercises('biceps')" />
+                    <ellipse cx="265" cy="160" rx="15" ry="35" fill="#10B981" class="muscle-part" onclick="showExercises('biceps')" />
+
+                    <!-- Abdominales -->
+                    <rect x="175" y="180" width="50" height="80" rx="10" 
+                          fill="#F59E0B" class="muscle-part" onclick="showExercises('abdominales')" />
+
+                    <!-- Antebrazos -->
+                    <rect x="125" y="200" width="18" height="60" rx="9" fill="#6B7280" />
+                    <rect x="257" y="200" width="18" height="60" rx="9" fill="#6B7280" />
+
+                    <!-- Cuádriceps -->
+                    <rect x="165" y="270" width="30" height="90" rx="15" 
+                          fill="#8B5CF6" class="muscle-part" onclick="showExercises('cuadriceps')" />
+                    <rect x="205" y="270" width="30" height="90" rx="15" 
+                          fill="#8B5CF6" class="muscle-part" onclick="showExercises('cuadriceps')" />
+
+                    <!-- Espinillas -->
+                    <rect x="170" y="370" width="20" height="80" rx="10" fill="#6B7280" />
+                    <rect x="210" y="370" width="20" height="80" rx="10" fill="#6B7280" />
+
+                    <!-- Pies -->
+                    <ellipse cx="180" cy="465" rx="25" ry="12" fill="#4B5563" />
+                    <ellipse cx="220" cy="465" rx="25" ry="12" fill="#4B5563" />
+                </g>
+
+                <!-- Vista Trasera -->
+                <g id="backView" style="display: none;">
+                    <!-- Cabeza -->
+                    <ellipse cx="200" cy="50" rx="35" ry="40" fill="#4B5563" />
+                    <rect x="185" y="85" width="30" height="25" fill="#6B7280" />
+
+                    <!-- Hombros -->
+                    <ellipse cx="145" cy="120" rx="30" ry="20" fill="#3B82F6" class="muscle-part" onclick="showExercises('hombros')" />
+                    <ellipse cx="255" cy="120" rx="30" ry="20" fill="#3B82F6" class="muscle-part" onclick="showExercises('hombros')" />
+
+                    <!-- Dorsales -->
+                    <path d="M 160 130 Q 200 150 240 130 L 240 200 Q 200 210 160 200 Z" 
+                          fill="#DC2626" class="muscle-part" onclick="showExercises('dorsales')" />
+
+                    <!-- Tríceps -->
+                    <ellipse cx="135" cy="160" rx="15" ry="35" fill="#14B8A6" class="muscle-part" onclick="showExercises('triceps')" />
+                    <ellipse cx="265" cy="160" rx="15" ry="35" fill="#14B8A6" class="muscle-part" onclick="showExercises('triceps')" />
+
+                    <!-- Lumbar -->
+                    <rect x="175" y="210" width="50" height="50" rx="10" fill="#92400E" />
+
+                    <!-- Antebrazos -->
+                    <rect x="125" y="200" width="18" height="60" rx="9" fill="#6B7280" />
+                    <rect x="257" y="200" width="18" height="60" rx="9" fill="#6B7280" />
+
+                    <!-- Glúteos -->
+                    <ellipse cx="185" cy="280" rx="20" ry="30" fill="#EC4899" class="muscle-part" onclick="showExercises('gluteos')" />
+                    <ellipse cx="215" cy="280" rx="20" ry="30" fill="#EC4899" class="muscle-part" onclick="showExercises('gluteos')" />
+
+                    <!-- Femorales -->
+                    <rect x="165" y="315" width="30" height="70" rx="15" 
+                          fill="#A855F7" class="muscle-part" onclick="showExercises('femoral')" />
+                    <rect x="205" y="315" width="30" height="70" rx="15" 
+                          fill="#A855F7" class="muscle-part" onclick="showExercises('femoral')" />
+
+                    <!-- Gemelos -->
+                    <ellipse cx="180" cy="415" rx="18" ry="35" fill="#06B6D4" class="muscle-part" onclick="showExercises('gemelos')" />
+                    <ellipse cx="220" cy="415" rx="18" ry="35" fill="#06B6D4" class="muscle-part" onclick="showExercises('gemelos')" />
+
+                    <!-- Pies -->
+                    <ellipse cx="180" cy="465" rx="25" ry="12" fill="#4B5563" />
+                    <ellipse cx="220" cy="465" rx="25" ry="12" fill="#4B5563" />
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Modal de Ejercicios -->
+    <div id="exerciseModal" class="modal">
+        <div class="modal-content fade-in">
+            <div class="sticky border-b p-6">
+                <div class="flex justify-between items-center">
+                    <h2 id="modalTitle"></h2>
+                    <button onclick="closeModal()">✕</button>
+                </div>
+            </div>
+            <div id="exerciseList" class="p-6"></div>
+        </div>
+    </div>
+
+    <script>
+        // Variable global para almacenar la base de datos
+        let exerciseDB = {};
+
+        // Cargar la base de datos desde el archivo JSON
+        async function loadExerciseDB() {
+            try {
+                const response = await fetch('exerciseDB.json');
+                exerciseDB = await response.json();
+                console.log('Base de datos cargada correctamente');
+            } catch (error) {
+                console.error('Error al cargar la base de datos:', error);
+                alert('Error al cargar la base de datos de ejercicios. Asegúrate de que el archivo exerciseDB.json esté en la misma carpeta.');
+            }
+        }
+
+        // Cargar la base de datos al iniciar
+        loadExerciseDB();
+
+        // Cambiar vista
+        function changeView(view) {
+            const frontView = document.getElementById('frontView');
+            const backView = document.getElementById('backView');
+            const btnFront = document.getElementById('btnFront');
+            const btnBack = document.getElementById('btnBack');
+
+            if (view === 'front') {
+                frontView.style.display = 'block';
+                backView.style.display = 'none';
+                btnFront.classList.add('active');
+                btnBack.classList.remove('active');
+            } else {
+                frontView.style.display = 'none';
+                backView.style.display = 'block';
+                btnBack.classList.add('active');
+                btnFront.classList.remove('active');
+            }
+        }
+
+        // Mostrar ejercicios
+        function showExercises(muscle) {
+            if (!exerciseDB[muscle]) {
+                console.error('Músculo no encontrado:', muscle);
+                return;
+            }
+
+            const modal = document.getElementById('exerciseModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const exerciseList = document.getElementById('exerciseList');
+
+            const muscleData = exerciseDB[muscle];
+            modalTitle.textContent = muscleData.name;
+
+            let html = '<div class="space-y-4">';
+            muscleData.exercises.forEach(exercise => {
+                html += `
+                    <div class="bg-slate-700">
+                        <h3>${exercise.name}</h3>
+                        <div class="flex">
+                            <span class="text-blue-300">Series: <span class="text-white">${exercise.sets}</span></span>
+                            <span class="text-blue-300">Reps: <span class="text-white">${exercise.reps}</span></span>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            exerciseList.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        // Cerrar modal
+        function closeModal() {
+            const modal = document.getElementById('exerciseModal');
+            modal.classList.remove('active');
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('exerciseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
