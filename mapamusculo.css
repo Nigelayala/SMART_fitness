@@ -1,8 +1,3 @@
-/* ==========================================
-   ESTILOS PARA MAPA MUSCULAR INTERACTIVO
-   (Consistente con el tema principal del sitio)
-   ========================================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +11,11 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #00ff80; 
-    position: sticky; /* Fija el header arriba */
+    position: sticky; 
     top: 0;
     z-index: 1000;
 }
+
 footer {
     background-color: #0d0d0d;
     padding: 15px;
@@ -30,6 +26,7 @@ footer {
     color: #777;
     margin-top: 40px;
 }
+
 body {
     font-family: 'Montserrat', Arial, sans-serif;
     background-color: #1a1a1a;
@@ -37,11 +34,13 @@ body {
     line-height: 1.6;
     min-height: 100vh;
 }
+
 .logo {
     font-size: 1.8em;
     font-weight: 900;
-    color: #f0f0f0; /* Color primario del logo */
+    color: #f0f0f0; 
 }
+
 .logo .accent-text {
     color: #00ff80;
 }
@@ -65,19 +64,11 @@ nav ul li a:hover {
     border-bottom: 2px solid #00ff80;
 }
 
-/* ==========================================
-   CONTENEDOR PRINCIPAL
-   ========================================== */
-
 .max-w-6xl {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem 5%;
 }
-
-/* ==========================================
-   TÍTULOS Y TEXTOS
-   ========================================== */
 
 h1 {
     font-size: 3.5rem;
@@ -100,10 +91,6 @@ h1 {
     margin-bottom: 1.5rem;
     text-align: center;
 }
-
-/* ==========================================
-   BOTONES DE VISTA
-   ========================================== */
 
 .flex {
     display: flex;
@@ -136,7 +123,6 @@ button {
     font-family: 'Montserrat', Arial, sans-serif;
 }
 
-/* Botón activo (estilo CTA principal) */
 .bg-blue-600,
 #btnFront.active,
 #btnBack.active {
@@ -153,7 +139,6 @@ button {
     transform: translateY(-2px) scale(1.05);
 }
 
-/* Botón inactivo */
 .bg-slate-700,
 #btnFront:not(.active),
 #btnBack:not(.active) {
@@ -168,10 +153,6 @@ button {
     background-color: #333;
     transform: translateY(-2px);
 }
-
-/* ==========================================
-   CONTENEDOR DEL MAPA CORPORAL
-   ========================================== */
 
 .relative {
     position: relative;
@@ -193,10 +174,6 @@ button {
 .p-8 {
     padding: 2rem;
 }
-
-/* ==========================================
-   SVG Y PARTES MUSCULARES
-   ========================================== */
 
 #bodyMap {
     width: 100%;
@@ -223,10 +200,6 @@ button {
 .muscle-part:active {
     transform: scale(0.98);
 }
-
-/* ==========================================
-   MODAL DE EJERCICIOS
-   ========================================== */
 
 .modal {
     display: none;
@@ -280,7 +253,6 @@ button {
     }
 }
 
-/* Scrollbar personalizado para el modal */
 .modal-content::-webkit-scrollbar {
     width: 10px;
 }
@@ -298,10 +270,6 @@ button {
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: #33ff99;
 }
-
-/* ==========================================
-   HEADER DEL MODAL
-   ========================================== */
 
 .sticky {
     position: sticky;
@@ -339,10 +307,6 @@ button {
     transform: rotate(90deg);
 }
 
-/* ==========================================
-   LISTA DE EJERCICIOS
-   ========================================== */
-
 #exerciseList {
     padding: 1.5rem;
 }
@@ -351,7 +315,6 @@ button {
     margin-top: 1rem;
 }
 
-/* Estilos de tarjeta de ejercicio (consistente con .card del sitio) */
 .bg-slate-700 {
     background-color: #242424;
     padding: 25px 30px;
@@ -390,10 +353,6 @@ button {
     font-weight: bold;
 }
 
-/* ==========================================
-   ANIMACIONES ADICIONALES
-   ========================================== */
-
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
@@ -407,7 +366,6 @@ button {
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* Efecto de brillo en los botones activos */
 .bg-blue-600::before,
 #btnFront.active::before,
 #btnBack.active::before {
@@ -434,10 +392,6 @@ button {
         transform: translateX(100%) translateY(100%) rotate(45deg);
     }
 }
-
-/* ==========================================
-   RESPONSIVE DESIGN
-   ========================================== */
 
 @media (max-width: 992px) {
     h1 {
@@ -534,16 +488,11 @@ button {
     }
 }
 
-/* Ajuste para pantallas muy pequeñas */
 @media (max-width: 380px) {
     #bodyMap {
         transform: scale(0.85);
     }
 }
-
-/* ==========================================
-   ESTADOS DE FOCO (ACCESIBILIDAD)
-   ========================================== */
 
 button:focus-visible {
     outline: 2px solid #00ff80;
@@ -554,10 +503,6 @@ button:focus-visible {
     outline: 3px solid #00ff80;
     outline-offset: 3px;
 }
-
-/* ==========================================
-   UTILIDADES ADICIONALES
-   ========================================== */
 
 .bg-gradient-to-br {
     background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9));
@@ -571,22 +516,15 @@ button:focus-visible {
     color: #00ff80;
 }
 
-/* ==========================================
-   AJUSTES ESPECÍFICOS PARA INTEGRACIÓN
-   ========================================== */
-
-/* Si se usa dentro de una sección con padding del sitio */
 .section-content .max-w-6xl {
     padding: 0;
 }
 
-/* Asegurar que las imágenes SVG sean responsivas */
 img, svg, video {
     max-width: 100%;
     height: auto;
 }
 
-/* Contenedor flexible si se necesita */
 .container {
     width: 100%;
     padding-right: 15px;

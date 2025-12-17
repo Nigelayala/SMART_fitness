@@ -1,31 +1,19 @@
-/* --------------------------------------------------------------------------
-   REGISTRO.CSS: ESTILOS PARA EL SEGUIMIENTO DE ENTRENAMIENTOS Y NAVEGACIÓN
-   -------------------------------------------------------------------------- */
-
-/* --------------------
-   ESTILOS DE SECCIÓN Y FONDO
-   -------------------- */
-
-
 .tracker-section {
-    background-color: #202020; /* Un gris muy oscuro para destacar la sección */
-    width: 100%; /* Asegura que el fondo ocupe el 100% */
-    padding: 60px 0; /* Quitamos padding lateral aquí, se lo ponemos al contenedor */
+    background-color: #202020;
+    width: 100%;
+    padding: 60px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* --------------------
-   ESTILOS DE NAVEGACIÓN (HEADER Y NAV)
-   -------------------- */
 .accent-text {
-    color: #00ff80; /* Color neón */
+    color: #00ff80;
 }
 
 header {
-    background-color: #0d0d0d; /* Negro muy oscuro para la cabecera */
+    background-color: #0d0d0d;
     padding: 15px 5%;
     display: flex;
     justify-content: space-between;
@@ -42,7 +30,6 @@ header {
     color: #f0f0f0; 
 }
 
-/* Estilos del menú */
 nav ul {
     list-style: none;
     display: flex;
@@ -65,25 +52,16 @@ nav ul li a:hover {
     border-bottom: 2px solid #00ff80;
 }
 
-/* --------------------
-   ESTILOS GENERALES DEL TRACKER
-   -------------------- */
-
-/* Contenedor principal de la rejilla (limita y centra el contenido) */
 .tracker-container {
-    max-width: 900px; /* Limita el ancho del contenido */
-    padding: 30px 5%; /* Padding lateral para que no se pegue a los bordes */
+    max-width: 900px;
+    padding: 30px 5%;
 }
 
-/* --------------------
-   CAJA DE NUEVA SESIÓN (FORMULARIO)
-   -------------------- */
 .registro-form-box {
     background-color: #242424;
     padding: 25px;
     border-radius: 20px;
     height: fit-content; 
-    /* CLAVE: Centra el contenido horizontalmente (títulos, formulario) */
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -98,15 +76,13 @@ nav ul li a:hover {
     text-align: center;
 }
 
-/* Centra y limita el ancho del formulario dentro de su caja */
 #formulario-registro-dinamico {
     width: 90%; 
     max-width: 350px; 
     margin: 0 auto; 
-    text-align: center; /* <<< CORRECCIÓN APLICADA: Esto centra los elementos de bloque y texto */
+    text-align: center;
 }
 
-/* Aseguramos que los campos de grupo individuales ocupen todo el ancho del formulario centrado */
 .form-group {
     width: 100%;
     margin-bottom: 15px;
@@ -116,7 +92,6 @@ nav ul li a:hover {
     display: block;
     width: 100%;
     margin-bottom: 5px;
-    /* Centra el texto de la etiqueta */
     text-align: center;
 }
 
@@ -128,20 +103,14 @@ nav ul li a:hover {
     color: #f0f0f0;
     padding: 8px;
     border-radius: 4px;
-    /* Centra el texto dentro de los campos */
     text-align: center;
 }
 
-/* Aseguramos que los botones sigan centrados */
 #btn-add-serie, #btn-guardar-ejercicio, .registro-form-box .primary-cta {
     width: 100%;
     margin: 15px 0 5px 0;
     display: block;
 }
-
-/* --------------------
-   ESTILOS DE SERIES DINÁMICAS
-   -------------------- */
 
 .series-header {
     display: flex;
@@ -181,10 +150,6 @@ nav ul li a:hover {
     background: none; border: none; color: #ff5555; font-weight: bold; cursor: pointer; padding: 5px; transition: color 0.2s;
 }
 .delete-serie-btn:hover { color: #ff0000; }
-
-/* --------------------
-   CAJA DE HISTORIAL (TABLA)
-   -------------------- */
 
 .historial-box {
     background-color: #0d0d0d;

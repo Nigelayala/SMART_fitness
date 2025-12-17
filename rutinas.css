@@ -1,46 +1,27 @@
-/* ==========================================================
-   entrenamiento.css: ESTILOS PARA EL ARTÍCULO DE RUTINAS
-   ========================================================== */
-
-/* --------------------
-   1. CONTENEDOR PRINCIPAL
-   -------------------- */
-
 .training-page-section {
-    /* Fondo ligeramente diferente al body para que la sección destaque */
     background-color: #1f1f1f; 
     padding-top: 60px;
     padding-bottom: 80px;
 }
 
 .section-description {
-    /* Asegura que los enlaces internos (como a registro.html) se vean */
     color: #00ff80;
     text-decoration:solid;
     width: 1200px;
 }
 
-/* --------------------
-   2. CUADRÍCULA DE PLANES
-   -------------------- */
-
 .plans-container {
     display: grid;
-    /* Crea dos columnas por defecto para las cajas grandes de rutinas */
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
     margin-top: 40px;
 }
 
-/* --------------------
-   3. ESTILOS DE CADA PLAN (ARTICLE)
-   -------------------- */
-
 .article-plan {
-    background-color: #242424; /* Fondo de la tarjeta */
+    background-color: #242424;
     padding: 30px;
     border-radius: 10px;
-    border-top: 4px solid #00ff80; /* Línea de acento neón */
+    border-top: 4px solid #00ff80;
     transition: box-shadow 0.3s ease;
     height: fit-content;
 }
@@ -56,10 +37,6 @@
     font-weight: 800;
 }
 
-/* --------------------
-   4. METADATOS Y TAGS
-   -------------------- */
-
 .plan-meta {
     margin-bottom: 20px;
 }
@@ -74,7 +51,6 @@
     color: #f0f0f0;
 }
 
-/* Estilos específicos para Tags (puedes añadir más si quieres colores diferentes) */
 .tag-frecuencia {
     background-color: rgba(0, 255, 128, 0.2);
     color: #00ff80;
@@ -83,11 +59,6 @@
     background-color: rgba(255, 165, 0, 0.2);
     color: orange;
 }
-
-
-/* --------------------
-   5. LISTAS Y EJERCICIOS
-   -------------------- */
 
 .day-title {
     font-size: 1.2em;
@@ -99,13 +70,13 @@
 }
 
 .benefit-list {
-    list-style: none; /* Eliminar el estilo de lista por defecto */
+    list-style: none;
     padding-left: 0;
     margin-top: 15px;
 }
 
 .benefit-list li {
-    background-color: #2e2e2e; /* Fondo de lista ligeramente más claro */
+    background-color: #2e2e2e;
     padding: 10px;
     margin-bottom: 8px;
     border-left: 3px solid #00ff80;
@@ -116,11 +87,6 @@
 .benefit-list li strong {
     color: #00ff80;
 }
-
-
-/* --------------------
-   6. CONCLUSIÓN Y CTA FINAL
-   -------------------- */
 
 .conclusion-box {
     text-align: center;
@@ -137,7 +103,6 @@
 }
 
 .conclusion-box .secondary-cta {
-    /* Sobrescribe el color del botón CTA para que se vea bien en este fondo */
     background-color: #00ff80;
     color: #1a1a1a;
 }

@@ -1,8 +1,3 @@
-// ==========================================================
-// calculadora.js: Lógica de la Calculadora TDEE y MACROS
-// ==========================================================
-
-// FÓRMULA DE MIFFLIN-ST JEOR para TMB
 function calcularTMB(peso, altura, edad, sexo) {
     let tmb = 0;
     if (sexo === 'hombre') {
@@ -13,7 +8,6 @@ function calcularTMB(peso, altura, edad, sexo) {
     return tmb;
 }
 
-// Coeficientes de Nivel de Actividad Física (NAP)
 const NIVELES_ACTIVIDAD = {
     sedentario: 1.2,
     ligero: 1.375,
@@ -22,7 +16,6 @@ const NIVELES_ACTIVIDAD = {
     muy_activo: 1.9
 };
 
-// Cálculo de TDEE
 function calcularTDEE(tmb, actividad) {
     const factor = NIVELES_ACTIVIDAD[actividad];
     if (factor) {
@@ -31,7 +24,6 @@ function calcularTDEE(tmb, actividad) {
     return 0;
 }
 
-// Cálculo de Macros
 function calcularMacronutrientes(caloriasObjetivo, proteinaPct, carbPct, grasaPct) {
     const calProteina = caloriasObjetivo * proteinaPct;
     const calCarb = caloriasObjetivo * carbPct;
@@ -49,8 +41,6 @@ function calcularMacronutrientes(caloriasObjetivo, proteinaPct, carbPct, grasaPc
     };
 }
 
-
-// Manejador del Formulario
 function manejarCalculoTDEE(event) {
     event.preventDefault();
 
@@ -123,8 +113,6 @@ function manejarCalculoTDEE(event) {
     resultadosDiv.scrollIntoView({ behavior: 'smooth' });
 }
 
-
-// Inicialización: Enlazar el formulario
 document.addEventListener('DOMContentLoaded', () => {
     const formTDEE = document.getElementById('formulario-tdee');
     if (formTDEE) {

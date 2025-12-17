@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles del Entrenamiento | Smart Fitness</title>
     <link rel="stylesheet" href="styless.css">
-    <link rel="stylesheet" href="detalles.css">
+    <link rel="stylesheet" href="detalles-sesion.css">
 </head>
 <body>
     <header>
@@ -36,53 +36,13 @@
         </section>
 
         <div id="lista-detalles-ejercicios" class="exercises-grid">
-            </div>
+        </div>
     </main>
 
-<footer>
+    <footer>
         <p>Smart Fitness &copy; 2025 | Política de Privacidad | <span class="accent-text">Análisis de progreso.</span></p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Obtener el ID de la sesión que guardamos al hacer clic en registro.js
-            const idBuscado = localStorage.getItem('sesion_detalles_id');
-            const historial = JSON.parse(localStorage.getItem('historialSesiones')) || [];
-            
-            // 2. Buscar la sesión específica
-            const sesion = historial.find(s => s.id == idBuscado);
-
-            if (!sesion) {
-                alert("No se ha encontrado la información de este entrenamiento.");
-                window.location.href = 'registro.html';
-                return;
-            }
-
-            // 3. Rellenar cabecera
-            document.getElementById('det-titulo').textContent = sesion.rutina;
-            document.getElementById('det-fecha').textContent = `📅 ${sesion.fecha}`;
-            document.getElementById('det-ejercicios-count').textContent = `💪 ${sesion.ejercicios.length} Ejercicios`;
-
-            // 4. Renderizar ejercicios y sus series
-            const contenedor = document.getElementById('lista-detalles-ejercicios');
-            
-            contenedor.innerHTML = sesion.ejercicios.map(ej => `
-                <div class="exercise-card">
-                    <div class="exercise-card-header">
-                        <h3>${ej.nombre}</h3>
-                    </div>
-                    <div class="series-container">
-                        ${ej.series.map((s, i) => `
-                            <div class="serie-box">
-                                <span class="serie-number">SET ${i + 1}</span>
-                                <span class="weight-value">${s.peso}<small>kg</small></span>
-                                <span class="reps-value">${s.reps} <small>reps</small></span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        });
-    </script>
+    <script src="detalles-sesion.js"></script>
 </body>
 </html>

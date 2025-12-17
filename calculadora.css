@@ -1,7 +1,3 @@
-/* --------------------
-   CALCULADORA TDEE Y MACROS
-   -------------------- */
-
 .calculator-container {
     display: grid;
     grid-template-columns: 1fr 1fr; 
@@ -38,7 +34,6 @@
     margin-bottom: 10px;
 }
 
-/* Selector de Objetivo (los 3 botones) */
 .objetivo-selector {
     display: flex;
     gap: 10px;
@@ -68,7 +63,6 @@
     border-color: #00ff80;
 }
 
-/* Contenedor de Desglose de Macronutrientes */
 .macros-box {
     margin-top: 20px;
     padding: 15px;

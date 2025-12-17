@@ -24,49 +24,49 @@
     </header>
 
     <main>
-<section id="tdee-calculator" class="section-content calculator-section">
-    <h2 class="section-title">⚖️ Calculadora TDEE Avanzada y Macros</h2>
-    <p class="section-description">Utilizamos la fórmula de Mifflin-St Jeor para la máxima precisión. Introduce tus datos y descubre tu gasto calórico real y el desglose de macronutrientes para tu objetivo.</p>
-    <div class="calculator-container">
-        <form id="formulario-tdee" class="tdee-form">   
-            <div class="form-group">
-                <label for="sexo">Sexo:</label>
-                <select id="sexo" required>
-                    <option value="">-- Selecciona --</option>
-                    <option value="hombre">Hombre</option>
-                    <option value="mujer">Mujer</option>
-                </select>
+        <section id="tdee-calculator" class="section-content calculator-section">
+            <h2 class="section-title">⚖️ Calculadora TDEE Avanzada y Macros</h2>
+            <p class="section-description">Utilizamos la fórmula de Mifflin-St Jeor para la máxima precisión. Introduce tus datos y descubre tu gasto calórico real y el desglose de macronutrientes para tu objetivo.</p>
+            <div class="calculator-container">
+                <form class="tdee-form">   
+                    <div class="form-group">
+                        <label for="sexo">Sexo:</label>
+                        <select id="sexo" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="mujer">Mujer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edad">Edad (años):</label>
+                        <input type="number" min="15" max="100" placeholder="Ej: 30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" step="0.1" min="30" max="300" placeholder="Ej: 75.5" required>
+                    </div>            
+                    <div class="form-group">
+                        <label for="altura">Altura (cm):</label>
+                        <input type="number" min="100" max="250" placeholder="Ej: 175" required>
+                    </div>   
+                    <div class="form-group activity-group">
+                        <label for="actividad">Nivel de Actividad:</label>
+                        <select id="actividad" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="sedentario">Sedentario (Poco o ningún ejercicio)</option>
+                            <option value="ligero">Ejercicio ligero (1-3 días/sem)</option>
+                            <option value="moderado">Ejercicio moderado (3-5 días/sem)</option>
+                            <option value="activo">Ejercicio fuerte (6-7 días/sem)</option>
+                            <option value="muy_activo">Atleta / Ejercicio muy fuerte</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="cta-button primary-cta">Calcular TDEE y Objetivos</button>
+                </form>
+                <div class="tdee-results">
+                    <p>Introduce tus datos para que Smart Fitness calcule tu gasto energético y te muestre el desglose de macronutrientes para tu objetivo.</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="edad">Edad (años):</label>
-                <input type="number" id="edad" min="15" max="100" placeholder="Ej: 30" required>
-            </div>
-            <div class="form-group">
-                <label for="peso">Peso (kg):</label>
-                <input type="number" id="peso" step="0.1" min="30" max="300" placeholder="Ej: 75.5" required>
-            </div>            
-            <div class="form-group">
-                <label for="altura">Altura (cm):</label>
-                <input type="number" id="altura" min="100" max="250" placeholder="Ej: 175" required>
-            </div>   
-            <div class="form-group activity-group">
-                <label for="actividad">Nivel de Actividad:</label>
-                <select id="actividad" required>
-                    <option value="">-- Selecciona --</option>
-                    <option value="sedentario">Sedentario (Poco o ningún ejercicio)</option>
-                    <option value="ligero">Ejercicio ligero (1-3 días/sem)</option>
-                    <option value="moderado">Ejercicio moderado (3-5 días/sem)</option>
-                    <option value="activo">Ejercicio fuerte (6-7 días/sem)</option>
-                    <option value="muy_activo">Atleta / Ejercicio muy fuerte</option>
-                </select>
-            </div>
-            <button type="submit" class="cta-button primary-cta">Calcular TDEE y Objetivos</button>
-        </form>
-        <div id="resultado-tdee" class="tdee-results">
-            <p>Introduce tus datos para que Smart Fitness calcule tu gasto energético y te muestre el desglose de macronutrientes para tu objetivo.</p>
-        </div>
-    </div>
-</section>
+        </section>
     </main>
 
     <footer>
@@ -74,6 +74,7 @@
         </footer>
 
     <script src="calculadora.js"></script>
+
 </body>
 </html>
  

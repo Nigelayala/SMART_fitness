@@ -1,6 +1,3 @@
-/* ==========================================================
-   styles.css: ESTILOS GLOBALES Y BASE (APLICABLES A TODA LA PÁGINA)
-   ========================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -9,8 +6,8 @@
 
 body {
     font-family: 'Montserrat', Arial, sans-serif; 
-    background-color: #1a1a1a; /* Fondo muy oscuro */
-    color: #f0f0f0; /* Color de texto claro */
+    background-color: #1a1a1a;
+    color: #f0f0f0;
     line-height: 1.6;
     min-height: 100vh; 
 }
@@ -33,12 +30,9 @@ a {
 }
 
 .accent-text {
-    color: #00ff80; /* Verde Neón */
+    color: #00ff80;
 }
 
-/* --------------------
-   ENCABEZADO Y NAVEGACIÓN
-   -------------------- */
 header {
     background-color: #0d0d0d;
     padding: 15px 5%;
@@ -46,7 +40,7 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #00ff80; 
-    position: sticky; /* Fija el header arriba */
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -54,7 +48,7 @@ header {
 .logo {
     font-size: 1.8em;
     font-weight: 900;
-    color: #f0f0f0; /* Color primario del logo */
+    color: #f0f0f0;
 }
 .logo .accent-text {
     color: #00ff80;
@@ -79,9 +73,6 @@ nav ul li a:hover {
     border-bottom: 2px solid #00ff80;
 }
 
-/* --------------------
-   SECCIÓN HERO
-   -------------------- */
 .hero {
     background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)), 
                  url('./images/hero-bg.jpg') no-repeat center center/cover; 
@@ -111,9 +102,6 @@ nav ul li a:hover {
     text-align: center;
 }
 
-/* --------------------
-   BOTONES Y ESTILOS DE FORMULARIO COMUNES
-   -------------------- */
 .cta-button {
     display: inline-block;
     background-color: #00ff80;
@@ -132,9 +120,8 @@ nav ul li a:hover {
     transform: translateY(-2px);
 }
 
-/* Estilo para el botón de motivación */
 .secondary-cta {
-    background-color: #ff5733; /* Naranja/Rojo de motivación */
+    background-color: #ff5733;
     color: #f0f0f0;
 }
 
@@ -159,9 +146,6 @@ nav ul li a:hover {
     color: #00ff80; 
 }
 
-/* --------------------
-   SECCIONES GENERALES Y TÍTULOS
-   -------------------- */
 .section-content {
     padding: 60px 5%; 
     margin: 0 auto;
@@ -183,7 +167,6 @@ nav ul li a:hover {
     margin-left: 15px;
 }
 
-/* TARJETAS DE HERRAMIENTAS */
 .tools-section {
     text-align: center;
 }
@@ -196,52 +179,49 @@ nav ul li a:hover {
     text-align: left;
 }
 
-/* Estilo Base para TODAS las tarjetas (Herramientas y Nutrición) */
 .card, .nutrition-card {
     background-color: #242424;
-    padding: 45px 30px; /* Aumentado para más tamaño */
+    padding: 45px 30px;
     border-radius: 10px;
     flex: 1; 
     text-align: left;
     border-top: 3px solid transparent; 
     transition: all 0.3s ease;
-    
-    /* Propiedades para el layout de Nutrición */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card:hover, .nutrition-card:hover {
-    border-top-color: #00ff80; /* Usamos el color principal neón */
+    border-top-color: #00ff80;
     transform: translateY(-5px); 
     box-shadow: 0 10px 20px rgba(0, 255, 128, 0.1); 
 }
 
 .card h3, .nutrition-card h3 {
-    color: #00ff80; /* Título en neón */
+    color: #00ff80;
     margin-bottom: 15px;
-    font-size: 1.7em; /* Aumentado */
+    font-size: 1.7em;
 }
 
 .card p, .nutrition-card p {
     font-size: 1.05em;
     margin-bottom: 20px;
-    flex-grow: 1; /* Permite que el párrafo empuje el enlace hacia abajo */
+    flex-grow: 1;
     color: #ccc;
 }
 
 .card-link, .nutrition-card .card-link {
     display: block;
     margin-top: 15px;
-    color: #f0f0f0; /* Color claro para el enlace */
+    color: #f0f0f0;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s;
 }
 
 .card-link:hover, .nutrition-card .card-link:hover {
-    color: #00ff80; /* Neón al pasar el ratón */
+    color: #00ff80;
     text-decoration: underline;
 }
 
@@ -250,12 +230,6 @@ nav ul li a:hover {
     pointer-events: none; 
 }
 
-
-/* --------------------
-   SECCIÓN ENTRENAMIENTO Y NUTRICIÓN
-   -------------------- */
-
-/* Estilo para la cuadrícula de nutrición si está separada */
 .nutrition-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -315,10 +289,6 @@ nav ul li a:hover {
     margin-top: 30px;
 }
 
-
-/* --------------------
-   CTA FINAL Y FOOTER
-   -------------------- */
 .cta-final {
     text-align: center;
     padding: 60px 5%;
@@ -353,11 +323,7 @@ footer {
     color: #777;
     margin-top: 40px;
 }
-/* ==========================================================
-   REGLAS RESPONSIVE GENERALES (Toda la Web)
-   ========================================================== */
 
-/* 1. Contenedores Flexibles */
 .container {
     width: 100%;
     padding-right: 15px;
@@ -366,45 +332,40 @@ footer {
     margin-left: auto;
 }
 
-/* 2. Ajustes para Tablets y Laptops pequeñas (Menos de 992px) */
 @media (max-width: 992px) {
-    /* Los títulos grandes bajan de tamaño */
     .display-3 {
         font-size: 2.5rem !important;
     }
     
-    h1 { font-size: 2rem; }
+    h1 { 
+        font-size: 2rem; 
+    }
     
-    /* El Jumbotron reduce su acolchado */
     .jumbotron {
         padding: 40px 20px !important;
     }
 
-    /* Las columnas de Bootstrap se apilan automáticamente, 
-       pero forzamos que ocupen el 100% */
     .col-lg-5, .col-lg-7 {
         width: 100% !important;
         margin-bottom: 20px;
     }
 }
 
-/* 3. Ajustes para Móviles (Menos de 768px) */
 @media (max-width: 768px) {
-    /* Títulos aún más pequeños para que no se corten */
     .display-3 {
         font-size: 1.8rem !important;
     }
 
-    h1 { font-size: 1.5rem !important; }
+    h1 { 
+        font-size: 1.5rem !important; 
+    }
 
-    /* Ajuste de navegación si no usas menú hamburguesa */
     nav ul {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
 
-    /* Tablas responsivas: permite scroll lateral para que no rompa el diseño */
     .table-responsive, 
     #exerciseTable {
         display: block;
@@ -413,13 +374,11 @@ footer {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Reducir márgenes laterales en tarjetas de información */
     .card {
         padding: 1.5rem !important;
         margin: 0 10px;
     }
 
-    /* Botones más grandes para facilitar el clic táctil */
     .btn {
         width: 100%;
         margin-bottom: 10px;
@@ -427,16 +386,14 @@ footer {
     }
 }
 
-/* 4. Imágenes y Videos Flexibles */
 img, svg, video {
     max-width: 100%;
     height: auto;
 }
 
-/* 5. Ajuste fino para pantallas muy pequeñas (iPhone SE, etc.) */
 @media (max-width: 380px) {
     .human-body {
-        transform: scale(0.75); /* Encogemos el muñeco para que no se salga */
-        margin-left: -10%; /* Lo centramos visualmente */
+        transform: scale(0.75); 
+        margin-left: -10%; 
     }
 }

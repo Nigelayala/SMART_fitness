@@ -1,20 +1,17 @@
-/* ==========================================================
-   AGREGADO: ESTILOS DE NAVEGACIÓN (HEADER Y NAV)
-   ========================================================== */
 .accent-text {
-    color: #00ff80; /* Color neón, usado en el logo */
+    color: #00ff80;
 }
 
 header {
-    background-color: #0d0d0d; /* Negro muy oscuro para la cabecera */
+    background-color: #0d0d0d;
     padding: 15px 5%;
     display: flex;
-    justify-content: space-between; /* Alinea el logo a la izquierda y el nav a la derecha */
+    justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #00ff80; /* Línea de acento neón */
-    position: sticky; /* Hace que el header se quede arriba al hacer scroll */
+    border-bottom: 2px solid #00ff80;
+    position: sticky;
     top: 0;
-    z-index: 100; /* Asegura que esté por encima de todo el contenido */
+    z-index: 100;
 }
 
 .logo {
@@ -23,20 +20,17 @@ header {
     color: #f0f0f0; 
 }
 
-/* --------------------
-   ESTILOS DEL MENÚ DE NAVEGACIÓN
-   -------------------- */
 nav ul {
     list-style: none;
-    display: flex; /* <-- ESTO ARREGLA EL PROBLEMA: Hace que los elementos sean horizontales */
-    gap: 25px; /* Espacio entre los ítems del menú */
+    display: flex;
+    gap: 25px;
     margin: 0;
     padding: 0;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #f0f0f0; /* Texto blanco/claro por defecto */
+    color: #f0f0f0;
     font-weight: 500;
     font-size: 1em;
     transition: color 0.3s, border-bottom 0.3s;
@@ -44,20 +38,12 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #00ff80; /* Color neón al pasar el ratón */
+    color: #00ff80;
     border-bottom: 2px solid #00ff80;
 }
 
-
-/* ==========================================================
-   nutricion.css: ESTILOS PARA EL ARTÍCULO DE SUPLEMENTACIÓN
-   ========================================================== */
-
-/* --------------------
-   1. ESTILOS BASE Y CUERPO (Body y Contenedor Principal)
-   -------------------- */
 body {
-    background-color: #1a1a1a; /* Fondo principal muy oscuro */
+    background-color: #1a1a1a;
     color: #f0f0f0;
     font-family: 'Montserrat', Arial, sans-serif;
     line-height: 1.7;
@@ -65,13 +51,12 @@ body {
 }
 
 main {
-    padding-top: 50px; /* Espacio debajo del header */
+    padding-top: 50px;
     padding-bottom: 80px;
 }
 
-/* El Contenedor del Artículo (Ligeramente más claro para destacar) */
 .article-section {
-    background-color: #202020; /* Tonalidad de gris oscuro un poco más clara */
+    background-color: #202020;
     max-width: 900px;
     margin: 0 auto;
     padding: 40px 5%; 
@@ -87,14 +72,11 @@ main {
     padding-left: 15px;
 }
 
-/* --------------------
-   2. TIPOGRAFÍA Y ENCABEZADOS
-   -------------------- */
 .article-title {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 900; /* Extra bold para el título principal */
+    font-weight: 900;
     font-size: 3em;
-    color: #00ff80; /* Color neón */
+    color: #00ff80;
     margin-bottom: 10px;
 }
 
@@ -105,7 +87,7 @@ main {
     color: #f0f0f0;
     margin-top: 30px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #333; /* Separador sutil */
+    border-bottom: 1px solid #333;
     padding-bottom: 5px;
 }
 
@@ -118,9 +100,6 @@ main {
     margin-bottom: 10px;
 }
 
-/* --------------------
-   3. LISTAS Y PÁRRAFOS
-   -------------------- */
 .article-content p {
     margin-bottom: 20px;
     color: #e0e0e0;
@@ -133,7 +112,7 @@ main {
 }
 
 .article-content ul li {
-    background-color: #2c2c2c; /* Tono de fondo diferente para las listas (cajas de puntos) */
+    background-color: #2c2c2c;
     padding: 12px;
     margin-bottom: 8px;
     border-left: 4px solid #00ff80;
@@ -144,9 +123,6 @@ main {
     color: #00ff80;
 }
 
-/* --------------------
-   4. ESTILOS DE IMAGEN Y SEPARADORES
-   -------------------- */
 .article-content img {
     max-width: 100%;
     height: auto;

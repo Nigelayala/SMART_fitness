@@ -1,17 +1,10 @@
-// ==========================================================
-// registro.js: Lógica de Sesiones Completas y Persistencia
-// ==========================================================
-
 const EJERCICIOS_BASE = [
     { id: 'pb', nombre: 'Press Banca', grupo: 'Pecho' },
     { id: 's', nombre: 'Sentadilla', grupo: 'Pierna' },
     { id: 'pm', nombre: 'Peso Muerto', grupo: 'Espalda' }
 ];
 
-// Variable temporal para acumular ejercicios del día
 let ejerciciosDeLaSesion = [];
-
-// --- FUNCIONES DE UTILIDAD ---
 
 function obtenerTodosLosEjercicios() {
     const ejerciciosGuardados = JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
@@ -34,8 +27,6 @@ function obtenerHistorialSesiones() {
     return JSON.parse(localStorage.getItem('historialSesiones')) || [];
 }
 
-// --- FUNCIONES DE INTERFAZ DINÁMICA ---
-
 function createSerieRow() {
     return `
         <div class="form-group-inline serie-row">
@@ -55,8 +46,6 @@ function addSerieToForm() {
     const list = document.getElementById('series-list');
     list.insertAdjacentHTML('beforeend', createSerieRow());
 }
-
-// --- LÓGICA DE ACUMULACIÓN (AÑADIR AL DÍA) ---
 
 function añadirEjercicioAListaTemporal() {
     const nombre = document.getElementById('ejercicio').value.trim();
@@ -105,8 +94,6 @@ function renderizarListaTemporal() {
     `).join('');
 }
 
-// --- GUARDADO FINAL (HISTORIAL) ---
-
 function guardarSesionCompleta() {
     const fecha = document.getElementById('fecha-entreno').value;
     const nombreRutina = document.getElementById('nombre-rutina').value.trim() || "Sesión General";
@@ -134,14 +121,10 @@ function guardarSesionCompleta() {
     mostrarHistorial();
 }
 
-// --- NUEVA FUNCIÓN: IR A DETALLES ---
-
 window.verDetallesSesion = function(id) {
     localStorage.setItem('sesion_detalles_id', id);
     window.location.href = 'detalles-sesion.html';
 };
-
-// --- FUNCIÓN MOSTRAR HISTORIAL ACTUALIZADA ---
 
 function mostrarHistorial() {
     const tbody = document.getElementById('historial-cuerpo');
@@ -183,7 +166,6 @@ window.eliminarSesion = function(id) {
     mostrarHistorial();
 };
 
-// --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
     inicializarDatalistEjercicios();
     addSerieToForm();
