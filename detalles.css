@@ -1,0 +1,133 @@
+/* ==========================================================
+   detalles.css: Estilos para la visualización de pesos
+   ========================================================== */
+
+:root {
+    --neon-green: #00ff80;
+    --neon-orange: #ff5733;
+    --dark-surface: #242424;
+    --bg-color: #121212;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    color: white;
+}
+
+.detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-link {
+    color: var(--neon-green);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    text-shadow: 0 0 8px var(--neon-green);
+}
+
+/* Cabecera de la sesión */
+.session-header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border-bottom: 3px solid var(--neon-green);
+    margin-bottom: 30px;
+}
+
+.session-header h1 {
+    margin: 0 0 15px 0;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.badge {
+    background: #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    color: var(--neon-green);
+}
+
+/* Tarjetas de Ejercicio */
+.exercise-card {
+    background: var(--dark-surface);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.exercise-card h3 {
+    margin: 0 0 20px 0;
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+/* Contenedor de series */
+.series-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.serie-box {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #333;
+    transition: transform 0.2s;
+}
+
+.serie-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-orange);
+}
+
+.serie-number {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.weight-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--neon-orange);
+}
+
+.weight-value small {
+    font-size: 0.8rem;
+    color: #ccc;
+    margin-left: 2px;
+}
+
+.reps-value {
+    font-size: 1rem;
+    color: #eee;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .series-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .session-header h1 {
+        font-size: 1.8rem;
+    }
+}

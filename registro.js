@@ -1,13 +1,15 @@
 // ==========================================================
-// registro.js: Lógica de Registro Dinámico de Series y Persistencia
+// registro.js: Lógica de Sesiones Completas y Persistencia
 // ==========================================================
 
-// Lista estática inicial de ejercicios comunes
 const EJERCICIOS_BASE = [
     { id: 'pb', nombre: 'Press Banca', grupo: 'Pecho' },
     { id: 's', nombre: 'Sentadilla', grupo: 'Pierna' },
     { id: 'pm', nombre: 'Peso Muerto', grupo: 'Espalda' }
 ];
+
+// Variable temporal para acumular ejercicios del día
+let ejerciciosDeLaSesion = [];
 
 // --- FUNCIONES DE UTILIDAD ---
 
@@ -16,36 +18,11 @@ function obtenerTodosLosEjercicios() {
     return [...EJERCICIOS_BASE, ...ejerciciosGuardados];
 }
 
-function obtenerEjerciciosPersonalizados() {
-    return JSON.parse(localStorage.getItem('ejerciciosPersonalizados')) || [];
-}
-
-function guardarNuevoEjercicio(nombreEjercicio) {
-    const nombreNormalizado = nombreEjercicio.trim();
-    const todosLosEjercicios = obtenerTodosLosEjercicios();
-
-    const yaExiste = todosLosEjercicios.some(ej => ej.nombre.toLowerCase() === nombreNormalizado.toLowerCase());
-
-    if (!yaExiste) {
-        let ejerciciosPersonalizados = obtenerEjerciciosPersonalizados();
-        const nuevoEjercicio = {
-            id: 'user-' + Date.now(),
-            nombre: nombreNormalizado,
-            grupo: 'Personalizado'
-        };
-        ejerciciosPersonalizados.push(nuevoEjercicio);
-        localStorage.setItem('ejerciciosPersonalizados', JSON.stringify(ejerciciosPersonalizados));
-        inicializarDatalistEjercicios(); 
-    }
-}
-
 function inicializarDatalistEjercicios() {
     const datalist = document.getElementById('lista-ejercicios');
     if (!datalist) return;
-    
     const ejercicios = obtenerTodosLosEjercicios();
     datalist.innerHTML = '';
-    
     ejercicios.forEach(ej => {
         const option = document.createElement('option');
         option.value = ej.nombre;
@@ -53,16 +30,8 @@ function inicializarDatalistEjercicios() {
     });
 }
 
-function obtenerHistorial() {
-    return JSON.parse(localStorage.getItem('historialEntrenos')) || [];
-}
-
-function guardarEjercicioCompleto(ejercicioRegistro) {
-    let historial = obtenerHistorial();
-    historial.push(ejercicioRegistro);
-    localStorage.setItem('historialEntrenos', JSON.stringify(historial));
-    
-    mostrarHistorial(); 
+function obtenerHistorialSesiones() {
+    return JSON.parse(localStorage.getItem('historialSesiones')) || [];
 }
 
 // --- FUNCIONES DE INTERFAZ DINÁMICA ---
@@ -71,16 +40,15 @@ function createSerieRow() {
     return `
         <div class="form-group-inline serie-row">
             <div class="form-group">
-                <input type="number" class="serie-peso" step="0.5" min="0" placeholder="Peso" value="">
+                <input type="number" class="serie-peso" step="0.5" min="0" placeholder="Peso">
             </div>
             <div class="form-group">
-                <input type="number" class="serie-reps" min="1" placeholder="Reps" value="">
+                <input type="number" class="serie-reps" min="1" placeholder="Reps">
             </div>
             <div class="form-group" style="flex: 0 0 50px; text-align: right;">
                 <button type="button" class="delete-serie-btn" onclick="this.closest('.serie-row').remove()">X</button>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
 function addSerieToForm() {
@@ -88,157 +56,142 @@ function addSerieToForm() {
     list.insertAdjacentHTML('beforeend', createSerieRow());
 }
 
-// --- FUNCIÓN DE ELIMINACIÓN DE REGISTRO COMPLETO ---
+// --- LÓGICA DE ACUMULACIÓN (AÑADIR AL DÍA) ---
 
-window.eliminarRegistro = function(timestamp) {
-    if (!confirm("¿Estás seguro de que quieres eliminar este ejercicio completo con todas sus series?")) {
-        return;
-    }
-
-    let historial = obtenerHistorial();
-    const nuevoHistorial = historial.filter(registro => registro.timestamp !== timestamp);
-    
-    localStorage.setItem('historialEntrenos', JSON.stringify(nuevoHistorial));
-    mostrarHistorial(); 
-}
-
-
-// --- LÓGICA DE GUARDADO FINAL ---
-
-function manejarGuardadoEjercicio(event) {
-    event.preventDefault();
-    
-    const fecha = document.getElementById('fecha-entreno').value;
-    const ejercicioNombre = document.getElementById('ejercicio').value.trim();
+function añadirEjercicioAListaTemporal() {
+    const nombre = document.getElementById('ejercicio').value.trim();
     const seriesElements = document.querySelectorAll('#series-list .serie-row');
 
-    if (!fecha || !ejercicioNombre) {
-        alert("Por favor, introduce la Fecha y el Ejercicio.");
-        return;
-    }
-    if (seriesElements.length === 0) {
-        alert("Debes añadir al menos una serie.");
+    if (!nombre || seriesElements.length === 0) {
+        alert("Por favor, selecciona un ejercicio y añade al menos una serie.");
         return;
     }
 
     const seriesData = [];
     let isValid = true;
 
-    seriesElements.forEach((row, index) => {
-        const pesoInput = row.querySelector('.serie-peso');
-        const repsInput = row.querySelector('.serie-reps');
-        
-        const peso = parseFloat(pesoInput.value);
-        const reps = parseInt(repsInput.value);
+    seriesElements.forEach((row) => {
+        const peso = parseFloat(row.querySelector('.serie-peso').value);
+        const reps = parseInt(row.querySelector('.serie-reps').value);
 
         if (isNaN(peso) || isNaN(reps) || peso < 0 || reps < 1) {
             isValid = false;
-            row.style.border = '1px solid red'; 
+            row.style.border = '1px solid red';
+        } else {
+            seriesData.push({ peso, reps });
         }
-
-        seriesData.push({
-            peso: peso,
-            reps: reps,
-            numeroSerie: index + 1
-        });
     });
 
     if (!isValid) {
-        alert("Por favor, revisa que todas las series tengan valores numéricos válidos (Peso >= 0, Reps >= 1).");
+        alert("Revisa los valores de las series.");
         return;
     }
 
-    const registroEjercicio = {
-        fecha: fecha,
-        ejercicio: ejercicioNombre,
-        series: seriesData,
-        totalSeries: seriesData.length,
-        timestamp: Date.now()
-    };
-    
-    guardarEjercicioCompleto(registroEjercicio);
-    guardarNuevoEjercicio(ejercicioNombre);
+    ejerciciosDeLaSesion.push({ nombre, series: seriesData });
+    renderizarListaTemporal();
 
-    document.getElementById('formulario-registro-dinamico').reset();
+    document.getElementById('ejercicio').value = '';
     document.getElementById('series-list').innerHTML = '';
-    addSerieToForm(); 
-
-    alert(`¡Ejercicio de ${ejercicioNombre} con ${seriesData.length} series guardado con éxito!`);
+    addSerieToForm();
 }
 
+function renderizarListaTemporal() {
+    const contenedor = document.getElementById('lista-ejercicios-sesion');
+    contenedor.innerHTML = ejerciciosDeLaSesion.map((ej, index) => `
+        <div class="ejercicio-agregado" style="background: #333; padding: 10px; margin-bottom: 5px; border-radius: 5px; display: flex; justify-content: space-between;">
+            <span>💪 <strong>${ej.nombre}</strong> (${ej.series.length} series)</span>
+            <button onclick="ejerciciosDeLaSesion.splice(${index}, 1); renderizarListaTemporal();" style="background:none; border:none; color:red; cursor:pointer;">Eliminar</button>
+        </div>
+    `).join('');
+}
 
-// --- FUNCIÓN PRINCIPAL DE RENDERIZADO DE TABLA (VERSIÓN ÚNICA Y ROBUSTA) ---
+// --- GUARDADO FINAL (HISTORIAL) ---
+
+function guardarSesionCompleta() {
+    const fecha = document.getElementById('fecha-entreno').value;
+    const nombreRutina = document.getElementById('nombre-rutina').value.trim() || "Sesión General";
+
+    if (!fecha || ejerciciosDeLaSesion.length === 0) {
+        alert("Debes poner la fecha y añadir al menos un ejercicio a la lista.");
+        return;
+    }
+
+    const nuevaSesion = {
+        id: Date.now(),
+        fecha,
+        rutina: nombreRutina,
+        ejercicios: ejerciciosDeLaSesion
+    };
+
+    const historial = obtenerHistorialSesiones();
+    historial.push(nuevaSesion);
+    localStorage.setItem('historialSesiones', JSON.stringify(historial));
+
+    ejerciciosDeLaSesion = [];
+    document.getElementById('nombre-rutina').value = '';
+    document.getElementById('lista-ejercicios-sesion').innerHTML = '';
+    alert("¡Entrenamiento del día guardado con éxito!");
+    mostrarHistorial();
+}
+
+// --- NUEVA FUNCIÓN: IR A DETALLES ---
+
+window.verDetallesSesion = function(id) {
+    localStorage.setItem('sesion_detalles_id', id);
+    window.location.href = 'detalles-sesion.html';
+};
+
+// --- FUNCIÓN MOSTRAR HISTORIAL ACTUALIZADA ---
 
 function mostrarHistorial() {
     const tbody = document.getElementById('historial-cuerpo');
-    const totalEntrenosSpan = document.getElementById('total-entrenos');
-    const historial = obtenerHistorial();
-    
-    if (!tbody || !totalEntrenosSpan) return;
+    const totalSpan = document.getElementById('total-entrenos');
+    const historial = obtenerHistorialSesiones();
 
-    tbody.innerHTML = ''; 
-    totalEntrenosSpan.textContent = historial.length;
-    
-    const COLSPAN_COUNT = 4;
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    totalSpan.textContent = historial.length;
 
     if (historial.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="${COLSPAN_COUNT}" class="empty-message">No tienes registros aún. ¡Empieza a entrenar!</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="3" class="empty-message">No hay sesiones registradas.</td></tr>`;
         return;
     }
 
-    // Usamos reverse() para mostrar los más recientes arriba
-    historial.slice().reverse().forEach(registro => {
-        
-        // **CORRECCIÓN CLAVE: Asegurar que 'registro.series' sea un array**
-        const seriesArray = Array.isArray(registro.series) ? registro.series : [];
-        
-        // 1. Crear el resumen detallado de series
-        const resumenSeries = seriesArray
-            .map(s => `${s.peso}kg x ${s.reps}`)
-            .join(' | ');
-        
-        // 2. Usar un template literal (más seguro)
-        const rowHTML = `
+    historial.slice().reverse().forEach(sesion => {
+        const resumenEjercicios = sesion.ejercicios.map(ej => 
+            `• ${ej.nombre} (${ej.series.length} ser)`
+        ).join('<br>');
+
+        const row = `
             <tr>
-                <td>${registro.fecha}</td>
-                <td>${registro.ejercicio}</td>
-                <td>${resumenSeries}</td>
-                <td style="text-align: center;">
-                    <button class="delete-btn" onclick="eliminarRegistro(${registro.timestamp})">🗑️</button>
+                <td><strong>${sesion.fecha}</strong><br><small style="color: #00ff80">${sesion.rutina}</small></td>
+                <td>${resumenEjercicios}</td>
+                <td style="text-align:center">
+                    <button class="cta-button" style="padding:5px 10px; font-size:12px; margin-bottom:5px; background:#00ff80; color:black; border:none; border-radius:5px; cursor:pointer;" 
+                        onclick="verDetallesSesion(${sesion.id})">👁️ Ver Pesos</button>
+                    <button class="delete-btn" style="background:none; border:none; cursor:pointer; font-size:1.2em;" onclick="eliminarSesion(${sesion.id})">🗑️</button>
                 </td>
-            </tr>
-        `;
-        
-        tbody.insertAdjacentHTML('beforeend', rowHTML);
+            </tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
     });
 }
 
+window.eliminarSesion = function(id) {
+    if (!confirm("¿Eliminar toda esta sesión de entrenamiento?")) return;
+    const nuevoHistorial = obtenerHistorialSesiones().filter(s => s.id !== id);
+    localStorage.setItem('historialSesiones', JSON.stringify(nuevoHistorial));
+    mostrarHistorial();
+};
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Enlace del botón de añadir serie
-    const btnAddSerie = document.getElementById('btn-add-serie');
-    if (btnAddSerie) {
-        btnAddSerie.addEventListener('click', addSerieToForm);
-        // Añadir una serie inicial al cargar, si no hay ninguna
-        if (document.querySelectorAll('#series-list .serie-row').length === 0) {
-            addSerieToForm(); 
-        }
-    }
+    inicializarDatalistEjercicios();
+    addSerieToForm();
+    mostrarHistorial();
+
+    document.getElementById('btn-add-serie').addEventListener('click', addSerieToForm);
+    document.getElementById('btn-add-ejercicio-a-lista').addEventListener('click', añadirEjercicioAListaTemporal);
+    document.getElementById('btn-guardar-sesion-final').addEventListener('click', guardarSesionCompleta);
     
-    // 2. Enlace del formulario (Usamos el botón de submit para el guardado final)
-    const formRegistro = document.getElementById('formulario-registro-dinamico');
-    if (formRegistro) {
-        formRegistro.addEventListener('submit', manejarGuardadoEjercicio);
-    }
-    
-    // 3. Inicializar datalist y la tabla 
-    if (document.getElementById('lista-ejercicios')) {
-        inicializarDatalistEjercicios();
-    }
-    
-    // LLAMADA CLAVE: Esto carga los datos guardados en la tabla
-    if (document.getElementById('historial-tabla')) {
-        mostrarHistorial();
-    }
+    document.getElementById('formulario-registro-dinamico').addEventListener('submit', (e) => e.preventDefault());
 });
